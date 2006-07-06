@@ -3,6 +3,7 @@ package MyApp::Controller::Books;
 use strict;
 use warnings;
 use base 'Catalyst::Controller';
+use FormElementContainer;
 
 =head1 NAME
 
@@ -35,7 +36,6 @@ Fetch all book objects and pass to books/list.tt2 in stash to be displayed
 =cut
  
 sub list : Local {
-$DB::single=1;
     # Retrieve the usual perl OO '$self' for this object. $c is the Catalyst
     # 'Context' that's used to 'glue together' the various components
     # that make up the application
@@ -181,7 +181,6 @@ Handle Catalyst::Plugin::Authorization::ACL access denied exceptions
 =cut
 
 sub access_denied : Private {
-$DB::single=1;
     my ($self, $c) = @_;
 
 
@@ -192,6 +191,125 @@ $DB::single=1;
     $c->forward('list');
 }
 
+
+
+=head2 make_book_widget
+
+Build an HTML::Widget form for book creation and updates
+
+=cut
+
+sub make_book_widget {
+    my ($self, $c) = @_;
+
+    # Create an HTML::Widget to build the form
+    my $w = $c->widget('book_form')->method('post');
+
+    # ***New: Use custom class to render each element in the form    
+    $w->element_container_class('FormElementContainer');
+        
+    # Get authors
+    my @authorObjs = $c->model("MyAppDB::Author")->all();
+    my @authors = map {$_->id => $_->last_name }
+                       sort {$a->last_name cmp $b->last_name} @authorObjs;
+
+    # Create the form feilds
+    $w->element('Textfield', 'title'  )->label('Title')->size(60);
+    $w->element('Textfield', 'rating' )->label('Rating')->size(1);
+    # Convert to multi-select list
+    $w->element('Select',    'authors')->label('Authors')
+        ->options(@authors)->multiple(1)->size(3);
+    $w->element('Submit',    'submit' )->value('submit');
+
+    # Set constraints
+    $w->constraint(All     => qw/title rating authors/)
+        ->message('Required. ');
+    $w->constraint(Integer => qw/rating/)
+        ->message('Must be an integer. ');
+    $w->constraint(Range   => qw/rating/)->min(1)->max(5)
+        ->message('Must be a number between 1 and 5. ');
+    $w->constraint(Length  => qw/title/)->min(5)->max(50)
+        ->message('Must be between 5 and 50 characters. ');
+
+    # Set filters
+    for my $column (qw/title rating authors/) {
+        $w->filter( HTMLEscape => $column );
+        $w->filter( TrimEdges  => $column );
+    }
+
+    # Return the widget    
+    return $w;
+}
+
+
+
+=head2 hw_create
+
+Build an HTML::Widget form for book creation and updates
+
+=cut
+
+sub hw_create : Local {
+    my ($self, $c) = @_;
+
+    # Create the widget and set the action for the form
+    my $w = $self->make_book_widget($c);
+    $w->action($c->uri_for('hw_create_do'));
+
+    # Write form to stash variable for use in template
+    $c->stash->{widget_result} = $w->result;
+
+    # Set the template
+    $c->stash->{template} = 'books/hw_form.tt2';
+}
+
+
+=head2 hw_create_do
+
+Build an HTML::Widget form for book creation and updates
+
+=cut
+
+sub hw_create_do : Local {
+    my ($self, $c) = @_;
+
+    # Create the widget and set the action for the form
+    my $w = $self->make_book_widget($c);
+    $w->action($c->uri_for('hw_create_do'));
+
+    # Validate the form parameters
+    my $result = $w->process($c->req);
+
+    # Write form (including validation error messages) to
+    # stash variable for use in template
+    $c->stash->{widget_result} = $result;
+
+    # Were their validation errors?
+    if ($result->has_errors) {
+        # Warn the user at the top of the form that there were errors.
+        # Note that there will also be per-field feedback on
+        # validation errors because of '$w->process($c->req)' above.
+        $c->stash->{error_msg} = 'Validation errors!';
+    } else {
+        my $book = $c->model('MyAppDB::Book')->new({});
+        $book->populate_from_widget($result);
+
+        # Add a record to the join table for this book, mapping to
+        # appropriate author.  Note that $authors will be 1 author as
+        # a scalar or ref to list of authors depending on how many the
+        # user selected; the 'ref $authors ?...' handles both cases
+        my $authors = $c->request->params->{authors};
+        foreach my $author (ref $authors ? @$authors : $authors) {
+            $book->add_to_book_authors({author_id => $author});
+        }
+
+        # Set a status message for the user
+        $c->stash->{status_msg} = 'Book created';
+    }
+
+    # Set the template
+    $c->stash->{template} = 'books/hw_form.tt2';
+}
 
 
 
