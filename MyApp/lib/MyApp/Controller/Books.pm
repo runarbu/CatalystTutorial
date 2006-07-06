@@ -35,6 +35,7 @@ Fetch all book objects and pass to books/list.tt2 in stash to be displayed
 =cut
  
 sub list : Local {
+$DB::single=1;
     # Retrieve the usual perl OO '$self' for this object. $c is the Catalyst
     # 'Context' that's used to 'glue together' the various components
     # that make up the application
@@ -50,45 +51,52 @@ sub list : Local {
 }
 
 
+
 =head2 url_create
 
-Create a book with the supplied title, rating, and author
+Create a book with the supplied title and rating,
+with manual authorization
 
 =cut
 
 sub url_create : Local {
-    # In addition to self & context, get the title, rating, & 
-    # author_id args from the URL.  Note that Catalyst automatically 
-    # puts extra information after the "/<controller_name>/<action_name/" 
-    # into @_
+    # In addition to self & context, get the title, rating & author_id args
+    # from the URL.  Note that Catalyst automatically puts extra information
+    # after the "/<controller_name>/<action_name/" into @_
     my ($self, $c, $title, $rating, $author_id) = @_;
 
-    # Call create() on the book model object. Pass the table 
-    # columns/field values we want to set as hash values
-    my $book = $c->model('MyAppDB::Book')->create({
-            title  => $title,
-            rating => $rating
-        });
+    # Check the user's roles
+    if ($c->check_user_roles('admin')) {
+        # Call create() on the book model object. Pass the table 
+        # columns/field values we want to set as hash values
+        my $book = $c->model('MyAppDB::Book')->create({
+                title   => $title,
+                rating  => $rating
+            });
+        
+        # Add a record to the join table for this book, mapping to 
+        # appropriate author
+        $book->add_to_book_authors({author_id => $author_id});
+        # Note: Above is a shortcut for this:
+        # $book->create_related('book_authors', {author_id => $author_id});
+        
+        # Assign the Book object to the stash for display in the view
+        $c->stash->{book} = $book;
     
-    # Add a record to the join table for this book, mapping to 
-    # appropriate author
-    $book->add_to_book_authors({author_id => $author_id});
-    # Note: Above is a shortcut for this:
-    # $book->create_related('book_authors', {author_id => $author_id});
+        # This is a hack to disable XSUB processing in Data::Dumper
+        # (it's used in the view).  This is a work-around for a bug in
+        # the interaction of some versions or Perl, Data::Dumper & DBIC.
+        # You won't need this if you aren't using Data::Dumper (or if
+        # you are running DBIC 0.06001 or greater), but adding it doesn't 
+        # hurt anything either.
+        $Data::Dumper::Useperl = 1;
     
-    # Assign the Book object to the stash for display in the view
-    $c->stash->{book} = $book;
-
-    # This is a hack to disable XSUB processing in Data::Dumper
-    # (it's used in the view).  This is a work-around for a bug in
-    # the interaction of some versions or Perl, Data::Dumper & DBIC.
-    # You won't need this if you aren't using Data::Dumper (or if
-    # you are running DBIC 0.06001 or greater), but adding it doesn't 
-    # hurt anything either.
-    $Data::Dumper::Useperl = 1;
-
-    # Set the TT template to use
-    $c->stash->{template} = 'books/create_done.tt2';
+        # Set the TT template to use
+        $c->stash->{template} = 'books/create_done.tt2';
+    } else {
+        # Provide very simple feedback to the user
+        $c->response->body('Unauthorized!');
+    }
 }
 
 
@@ -162,6 +170,29 @@ sub delete : Local {
     # Forward to the list action/method in this controller
     $c->forward('list');
 }
+
+
+
+
+=head2 access_denied
+
+Handle Catalyst::Plugin::Authorization::ACL access denied exceptions
+
+=cut
+
+sub access_denied : Private {
+$DB::single=1;
+    my ($self, $c) = @_;
+
+
+    # Set the error message
+    $c->stash->{error_msg} = 'Unauthorized!';
+
+    # Display the list
+    $c->forward('list');
+}
+
+
 
 
 =head1 AUTHOR
