@@ -19,6 +19,14 @@ use Catalyst qw/
         Static::Simple
         
         StackTrace
+
+        Authentication
+        Authentication::Store::DBIC
+        Authentication::Credential::Password
+        
+        Session
+        Session::Store::FastMmap
+        Session::State::Cookie
         /;
 
 
