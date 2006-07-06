@@ -23,6 +23,8 @@ use Catalyst qw/
         Authentication
         Authentication::Store::DBIC
         Authentication::Credential::Password
+        Authorization::Roles
+	Authorization::ACL
         
         Session
         Session::Store::FastMmap
@@ -45,6 +47,22 @@ __PACKAGE__->config( name => 'MyApp' );
 
 # Start the application
 __PACKAGE__->setup;
+
+
+
+# Authorization::ACL Rules
+__PACKAGE__->deny_access_unless(
+        "/books/form_create",
+        [qw/admin/],
+    );
+__PACKAGE__->deny_access_unless(
+        "/books/form_create_do",
+        [qw/admin/],
+    );
+__PACKAGE__->deny_access_unless(
+        "/books/delete",
+        [qw/user admin/],
+    );
 
 
 =head1 NAME
