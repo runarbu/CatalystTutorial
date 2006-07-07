@@ -11,3 +11,7 @@ This file documents the revision history for Perl extension MyApp.
 	- Part 4: Authentication
 0.05
 	- Part 5: Authorization
+0.07
+	- Part 7: Testing
+	- Note: No changes in Part 6: Debugging
+
