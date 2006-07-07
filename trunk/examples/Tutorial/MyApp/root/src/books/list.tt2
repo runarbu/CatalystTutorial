@@ -32,3 +32,8 @@
   </tr>
 [% END -%]
 </table>
+
+<p>
+  <a href="[% Catalyst.uri_for('/login') %]">Login</a>
+  <a href="[% Catalyst.uri_for('form_create') %]">Create</a>
+</p>
