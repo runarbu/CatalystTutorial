@@ -9,4 +9,5 @@ This file documents the revision history for Perl extension MyApp.
 	- Part 3: Basic CRUD
 0.04
 	- Part 4: Authentication
-
+0.05
+	- Part 5: Authorization
