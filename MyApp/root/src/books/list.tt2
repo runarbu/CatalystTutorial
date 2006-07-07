@@ -7,7 +7,7 @@
 [% META title = 'Book List' -%]
 
 <table>
-<tr><th>Title</th><th>Rating</th><th>Author(s)</th></tr>
+<tr><th>Title</th><th>Rating</th><th>Author(s)</th><th>Links</th></tr>
 [% # Display each book in a table row %]
 [% FOREACH book IN books -%]
   <tr>
@@ -16,14 +16,18 @@
     <td>
       [% # First initialize a TT variable to hold a list.  Then use a TT FOREACH -%]
       [% # loop in 'side effect notation' to load just the last names of the     -%]
-      [% # authors into the list.  Note that we make a bogus assignment to the   -%]
-      [% # 'unused' vbl to avoid printing the size of the list after each push.  -%]      
+      [% # authors into the list.  Note that we are making a bogus assignment to -%]
+      [% # the 'xx' vbl to avoid printing the size of the list after each push.  -%]
       [% tt_authors = [ ];
-         unused = tt_authors.push(author.last_name) FOREACH author = book.authors %]
-      [% # Now use a TT 'virtual method' to display the author count in parens   -%]
+         xx = tt_authors.push(author.last_name) FOREACH author = book.authors %]
+      [% # Now use a TT 'virtual method' to display the author count             -%]
       ([% tt_authors.size %])
-      [% # Use another vmethod to join & print the names with comma separators   -%]
+      [% # Use another TT virtual method to join the names with comma separators -%]
       [% tt_authors.join(', ') %]
+    </td>
+    <td>
+      [% # Add a link to delete a book %]
+      <a href="[% Catalyst.uri_for('delete/') _ book.id %]">Delete</a>
     </td>
   </tr>
 [% END -%]

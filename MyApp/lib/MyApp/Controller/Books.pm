@@ -51,6 +51,123 @@ sub list : Local {
 }
 
 
+=head2 url_create
+
+Create a book with the supplied title, rating, and author
+
+=cut
+
+sub url_create : Local {
+    # In addition to self & context, get the title, rating, & 
+    # author_id args from the URL.  Note that Catalyst automatically 
+    # puts extra information after the "/<controller_name>/<action_name/" 
+    # into @_
+    my ($self, $c, $title, $rating, $author_id) = @_;
+
+    # Call create() on the book model object. Pass the table 
+    # columns/field values we want to set as hash values
+    my $book = $c->model('MyAppDB::Book')->create({
+            title  => $title,
+            rating => $rating
+        });
+    
+    # Add a record to the join table for this book, mapping to 
+    # appropriate author
+    $book->add_to_book_authors({author_id => $author_id});
+    # Note: Above is a shortcut for this:
+    # $book->create_related('book_authors', {author_id => $author_id});
+    
+    # Assign the Book object to the stash for display in the view
+    $c->stash->{book} = $book;
+
+    # This is a hack to disable XSUB processing in Data::Dumper
+    # (it's used in the view).  This is a work-around for a bug in
+    # the interaction of some versions or Perl, Data::Dumper & DBIC.
+    # You won't need this if you aren't using Data::Dumper (or if
+    # you are running DBIC 0.06001 or greater), but adding it doesn't 
+    # hurt anything either.
+    $Data::Dumper::Useperl = 1;
+
+    # Set the TT template to use
+    $c->stash->{template} = 'books/create_done.tt2';
+}
+
+
+
+=head2 form_create
+
+Display form to collect information for book to create
+
+=cut
+
+sub form_create : Local {
+    my ($self, $c) = @_;
+
+    # Set the TT template to use
+    $c->stash->{template} = 'books/form_create.tt2';
+}
+
+
+
+
+=head2 form_create_do
+
+Take information from form and add to database
+
+=cut
+
+sub form_create_do : Local {
+    my ($self, $c) = @_;
+
+    # Retrieve the values from the form
+    my $title     = $c->request->params->{title}     || 'N/A';
+    my $rating    = $c->request->params->{rating}    || 'N/A';
+    my $author_id = $c->request->params->{author_id} || '1';
+
+    # Create the book
+    my $book = $c->model('MyAppDB::Book')->create({
+            title   => $title,
+            rating  => $rating,
+        });
+    # Handle relationship with author
+    $book->add_to_book_authors({author_id => $author_id});
+
+    # Store new model object in stash
+    $c->stash->{book} = $book;
+
+    # Avoid Data::Dumper issue mentioned earlier
+    # You can probably omit this    
+    $Data::Dumper::Useperl = 1;
+
+    # Set the TT template to use
+    $c->stash->{template} = 'books/create_done.tt2';
+}
+
+
+
+
+=head2 delete 
+
+Delete a book
+    
+=cut
+
+sub delete : Local {
+    # $id = primary key of book to delete
+    my ($self, $c, $id) = @_;
+
+    # Search for the book and then delete it
+    $c->model('MyAppDB::Book')->search({id => $id})->delete_all;
+
+    # Set a status message to be displayed at the top of the view
+    $c->stash->{status_msg} = "Book deleted.";
+
+    # Forward to the list action/method in this controller
+    $c->forward('list');
+}
+
+
+
 =head1 AUTHOR
 
 root
