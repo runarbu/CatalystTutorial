@@ -19,6 +19,8 @@ Catalyst Controller.
 
 =head2 index 
 
+Logout logic
+
 =cut
 
 sub index : Private {
