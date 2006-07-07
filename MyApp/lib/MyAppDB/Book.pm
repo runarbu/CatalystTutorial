@@ -3,7 +3,7 @@ package MyAppDB::Book;
 use base qw/DBIx::Class/;  
 
 # Load required DBIC stuff
-__PACKAGE__->load_components(qw/PK::Auto Core HTMLWidget/);
+__PACKAGE__->load_components(qw/PK::Auto Core/);
 # Set the table name
 __PACKAGE__->table('books');
 # Set columns in table

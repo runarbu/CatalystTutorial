@@ -3,18 +3,16 @@ package MyApp::Model::MyAppDB;
 use strict;
 use base 'Catalyst::Model::DBIC::Schema';
 
-my $dsn = $ENV{MYAPP_DSN} ||= 'dbi:SQLite:myapp.db';
 __PACKAGE__->config(
     schema_class => 'MyAppDB',
     connect_info => [
-        $dsn,
+        'dbi:SQLite:myapp.db',
         '',
         '',
         { AutoCommit => 1 },
-
+        
     ],
 );
-
 
 =head1 NAME
 

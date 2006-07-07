@@ -33,35 +33,3 @@
 [% END -%]
 </table>
 
-<p>
-  <a href="[% Catalyst.uri_for('/login') %]">Login</a>
-  <a href="[% Catalyst.uri_for('form_create') %]">Create</a>
-</p>
-
-<p>Hello [% Catalyst.user.username %], you have the following roles:</p>
-
-<ul>
-  [% # Dump list of roles -%]
-  [% FOR role = Catalyst.user.roles %]<li>[% role %]</li>[% END %]
-</ul>
-
-<p>
-[% # Add some simple role-specific logic to template %]
-[% # Use $c->check_user_roles() to check authz -%]
-[% IF Catalyst.check_user_roles('user') %]
-  [% # Give normal users a link for 'logout' %]
-  <a href="[% Catalyst.uri_for('/logout') %]">Logout</a>
-[% END %]
-
-[% # Can also use $c->user->check_roles() to check authz -%]
-[% IF Catalyst.check_user_roles('admin') %]
-  [% # Give admin users a link for 'create' %]
-  <a href="[% Catalyst.uri_for('form_create') %]">Create</a>
-[% END %]
-</p>
-
-<p>
-  HTML::Widget:
-  <a href="[% Catalyst.uri_for('hw_create') %]">Create</a>
-  <a href="[% Catalyst.uri_for('hw_update') %]">Update</a>
-</p>
