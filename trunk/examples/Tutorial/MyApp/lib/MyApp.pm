@@ -29,10 +29,12 @@ use Catalyst qw/
         Session
         Session::Store::FastMmap
         Session::State::Cookie
+    
+        HTML::Widget
         /;
 
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 # Configure the application. 
 #

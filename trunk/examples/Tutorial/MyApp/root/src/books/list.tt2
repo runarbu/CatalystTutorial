@@ -59,3 +59,11 @@
   <a href="[% Catalyst.uri_for('form_create') %]">Create</a>
 [% END %]
 </p>
+
+<p>
+  HTML::Widget:
+  <a href="[% Catalyst.uri_for('hw_create') %]">Create</a>
+  <a href="[% Catalyst.uri_for('hw_update') %]">Update</a>
+</p>
+
+
