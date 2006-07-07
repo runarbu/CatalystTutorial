@@ -18,7 +18,7 @@ Catalyst Controller.
 
 
 
-=head2 base
+=head2 index 
 
 Login logic
 
