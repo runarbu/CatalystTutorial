@@ -19,10 +19,18 @@ use Catalyst qw/
         Static::Simple
         
         StackTrace
+
+        Authentication
+        Authentication::Store::DBIC
+        Authentication::Credential::Password
+        
+        Session
+        Session::Store::FastMmap
+        Session::State::Cookie
         /;
 
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 # Configure the application. 
 #
