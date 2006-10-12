@@ -1,2 +1,0 @@
-[ ] Write a benchmark that compares the performance of Store::DBI vs.
-    Store::DBIC and maybe others.

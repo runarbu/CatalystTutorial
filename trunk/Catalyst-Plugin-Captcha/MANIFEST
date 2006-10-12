@@ -1,7 +1,0 @@
-Changes
-Makefile.PL
-MANIFEST
-README
-t/00-load.t
-lib/Catalyst/Plugin/Captcha.pm
-META.yml                                 Module meta-data (added by MakeMaker)

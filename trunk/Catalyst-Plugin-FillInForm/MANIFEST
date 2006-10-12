@@ -1,9 +1,0 @@
-Changes
-FillInForm.pm
-Makefile.PL
-MANIFEST			This list of files
-META.yml			Module meta-data (added by MakeMaker)
-README
-t/01use.t
-t/02pod.t
-t/03podcoverage.t

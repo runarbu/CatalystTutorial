@@ -1,8 +1,0 @@
-Revision history for Perl extension Catalyst::Plugin::FormValidator.
-
-0.03  Xxx Xxx xx xx:xx:xx xxxx
-	- added quotes on prereq.
-0.02  Fri Apr 15 15:00:00 2005
-        - Updated documentation.
-0.01  Fri Jan 28 22:00:00 2005
-        - first release

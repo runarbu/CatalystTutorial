@@ -1,6 +1,0 @@
-Revision history for Perl extension Catalyst::Helper::HTMLDesign.
-
-0.01  Wed Apr  5 14:38:30 2006
-	- original version; created by h2xs 1.23 with options
-		-A -X -n Catalyst::Helper::HTMLDesign -b 5.8.1 -v 0.01
-

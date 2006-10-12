@@ -1,7 +1,0 @@
-=== part 3 - using and writing plugins ===
-
-* static - serve files to ease development
-* sessions - save default form values, mark new data
-* ... - write our own?
-
-
