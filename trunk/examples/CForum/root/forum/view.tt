@@ -1,0 +1,7 @@
+[% PROCESS header.tt %]
+<h1>[%forum.name%]</h1>
+<h2>threads:</h2>
+<ul>
+[% FOREACH thread in forum.threads(page) %]
+<li><a href="[%base%]thread/view/[%thread%]">[%thread.name%]</a></li>
+[%PROCESS footer.tt %]

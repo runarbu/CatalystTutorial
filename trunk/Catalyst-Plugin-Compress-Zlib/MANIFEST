@@ -1,0 +1,12 @@
+Build.PL
+Changes
+lib/Catalyst/Plugin/Compress/Deflate.pm
+lib/Catalyst/Plugin/Compress/Gzip.pm
+lib/Catalyst/Plugin/Compress/Zlib.pm
+Makefile.PL
+MANIFEST			This list of files
+README
+t/01use.t
+t/02pod.t
+t/03podcoverage.t
+META.yml

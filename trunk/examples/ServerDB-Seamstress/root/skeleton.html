@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>[% title || "Server Database" %]</title>
+	<link rel="stylesheet" type="text/css" media="all" href="/static/serverdb.css" />
+	<script type="text/javascript">
+	function toggle(id) {
+		var style2 = document.getElementById(id).style;
+		style2.display = style2.display ? "" : "block";
+	}
+	</script>
+</head>
+<body>
+	<div class="content">
+	
+	<h3 id="title">Server Database</h3>
+
+<div id="navcontainer">
+	<ul class="navlist">
+		<li class='server' ><a href="/server/list">Servers</a></li>
+		<li class='search' ><a href="/server/search">Search</a></li>
+		<li class='report' ><a href="/report/list">Reports</a></li>
+		<li><a href="/logout">Logout</a></li>
+	</ul>
+</div>
+
+
+<div seamstress=replace>
+
+</div>
+
+</div>
+
+<!--
+<div id="footer">
+	Powered by <a href="http://catalyst.perl.org">Catalyst</a>. <img src="/static/images/catalyst.png" />
+</div>
+-->
+</body>
+</html>

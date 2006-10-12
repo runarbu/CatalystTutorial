@@ -1,0 +1,41 @@
+body {
+    background-color: white;
+    margin:           0;
+
+    font-family: sans-serif;
+    line-height: 1.3em;
+    font-size:   95%;
+}
+
+h1, h2 {
+    background-color: #313052;
+    color:            white;
+    padding:          10px;
+}
+
+th       { text-align: left; }
+/*.indent_head { border-bottom: 2px solid #313052 }*/
+.indent_detail { margin-bottom: 10px }
+.indent1 { padding-top:  15px; }
+.indent2 { padding-left: 40px; }
+.indent3 { padding-left: 80px; }
+.indent4 { padding-left: 120px; }
+.indent5 { padding-left: 160px; }
+.indent6 { padding-left: 200px; }
+.indent_tests { padding-top: 0px; }
+
+p, dl, pre, table { margin:      15px; }
+dt    { font-weight: bold; }
+dd+dt { margin-top:  1em;  }
+.leftsep  { padding-left: 10px;  }
+.num      { text-align:   right; }
+
+.details  { display: none; }
+.expander { color: blue; cursor: pointer; }  /* hack? */
+
+.tests_ok       { color: #050; }
+.tests_failed   { color: #500; }
+.tests_todo     { color: #030; }
+.tests_skipped  { color: #555; }
+.tests_unexpect { color: #550; }
+

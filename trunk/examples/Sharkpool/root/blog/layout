@@ -1,0 +1,9 @@
+﻿[% WRAPPER blog/html 
+         + blog/wrapper %]
+[% PROCESS blog/header %]
+[% PROCESS blog/navigation/menu %]
+[% PROCESS blog/navigation/crumbtrail %]
+[% PROCESS blog/content %]
+[% PROCESS blog/sidebar %]
+[% PROCESS blog/footer %]
+[% END %]

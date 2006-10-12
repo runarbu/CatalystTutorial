@@ -1,0 +1,14 @@
+---
+name: Catalyst-Plugin-PageCache
+version: 0.12
+author:
+  - 'Andy Grundman, <andy@hybridized.org>'
+abstract: Cache the output of entire pages
+license: perl
+requires:
+  Catalyst: 5.23
+provides:
+  Catalyst::Plugin::PageCache:
+    file: lib/Catalyst/Plugin/PageCache.pm
+    version: 0.12
+generated_by: Module::Build version 0.2611

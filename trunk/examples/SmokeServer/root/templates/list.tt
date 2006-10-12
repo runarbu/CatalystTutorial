@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <title>Catalyst Smoke Server</title>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="[% uri_for("/static/list.css") %]" type="text/css" />
+
+        <script type="text/javascript">
+            function toggle_visibility (id) {
+                var elem     = document.getElementById("details_"  + id),
+                expander = document.getElementById("expander_" + id);
+                if(elem.className == "details") {
+                    elem.className = "";  /* hack? */
+                    expander.innerHTML = "&laquo;";
+                } else {
+                    elem.className = "details";
+                    expander.innerHTML = "&raquo;";
+                }
+            }
+		</script>
+
+		<script type="text/javascript"> var djConfig = {isDebug: true}; </script>
+		<script type="text/javascript" src="[% uri_for("/static/dojo/dojo.js") %]"></script>
+		<script type="text/javascript">
+            dojo.require("dojo.widget.*");
+            dojo.require("dojo.widget.ComboBox");
+            dojo.require("dojo.widget.html.ComboBox");
+        </script>
+    </head>
+
+    <body>
+		<h1>Smoke Reports</h1>
+
+		<a href="[% uri_for("/prefs") %]">edit preferences</a>
+
+		<div style="margin: auto; width: 70%" >
+            <form name="filter" action="[% uri_for("list") %]" method="get" >
+                    <label for="tag_field">Filter by tag:</label>
+                    <input
+                        type="text"
+                        id="tag_field"
+                        name="tag"
+                        value="[% tag %]"
+                        comboBoxValue="[% tag %]"
+                        style="width: 30ex"
+                        dojoType="combobox"
+                        dataUrl="[% uri_for("/feeds/tags", { pairs => 1 }) %]&prefix=%{searchString}" 
+                        mode="remote"
+                    />
+
+                    <br/>
+
+                    <label for="group_tag_field">Group by tags:</label>
+                    <input
+                        type="text"
+                        id="group_tag_field"
+                        name="group_tags"
+                        value="[% group_tags.join(" ") %]"
+                        comboBoxValue="[% group_tags.join(" ") %]"
+                        style="width: 30ex"
+                        dojoType="combobox"
+                        dataUrl="[% uri_for("/feeds/tags", { pairs => 1, parse_tags => 1, shallow => 1 }) %]&prefix=%{searchString}"
+                        mode="remote"
+                    />
+
+		    <script language="JavaScript">
+dojo.addOnLoad( init_autocomplete( "group_tag_field", "[% group_tags.join(" ") %]" ) );
+function init_autocomplete( id, def ) { return function() { dojo.widget.byId(id).textInputNode.value = def; } }
+		    </script>
+
+                    <br/>
+
+                    <input type="submit" />
+            </form>
+        </div>
+
+
+        <form name="compare" action="[% uri_for("compare") %]" method="get" >
+
+            <div style="margin-left: 3em; width: 30em">
+                <div >Select some reports and <input type="submit" value="compare"/></div>
+
+                <div style="margin: 2em"> [% cloud.html_and_css %] </div>
+            </div>
+
+            <table>
+                [% expander_id = 0 %]
+                [% PROCESS group_or_smokes group=smokes indent_level=0 %]
+
+                [% BLOCK group_or_smokes %]
+                    [% indent_level = indent_level + 1 %]
+                    [% IF group.groups %]
+                        [% PROCESS group_list %]
+                    [% ELSE %]
+                        [% PROCESS smoke_list %]
+                    [% END %]
+                    [% indent_level = indent_level - 1 %]
+                [% END %]
+
+                [% BLOCK group_list %]
+                    [% FOR group = group.groups %]
+                        <tr><th colspan="6" class="indent_head indent[% indent_level %]">[% group.name %]</th></tr>
+                        [% PROCESS group_or_smokes %]
+                    [% END %]
+                [% END %]
+
+                [% BLOCK smoke_list %]
+                    [% FOR smoke = group.smokes %]
+                        [% m = smoke.model %]
+                        [% detail_uri = uri_for("detail", smoke.id) %]
+                        [% expander_id = expander_id + 1 %]
+                        <tr>
+                            <td class="indent_tests indent[% indent_level %]"><input type="checkbox" value="[% smoke.id %]" name="smoke" /> [% smoke.date %]</td>
+                            <td class="leftsep num">[% smoke.duration.duration(2) %]</td>
+                            <td class="leftsep num">[% m.total_percentage %]</td>
+
+
+                            <td><span title="Details" class="expander" onclick="toggle_visibility('[% expander_id %]')" id="expander_[% expander_id %]">&raquo;</span></td>
+                            <td><a style="text-decoration: none" href="[% detail_uri %]" title="Full smoke report">&raquo;</a></td>
+                        </tr>
+                        <tr class="details" id="details_[% expander_id %]">
+                            <td colspan="2" class="indent_detail indent[% indent_level + 1 %]">
+                                <span class="tests_total">[% m.total_seen %] test cases</span>:<br />
+                                <span class="tests_ok">[% m.total_ok %] ok</span>,
+                                <span class="tests_failed">[% m.total_failed %] failed</span>,
+                                <span class="tests_todo">[% m.total_todo %] todo</span>,<br />
+                                <span class="tests_skipped">[% m.total_skipped %] skipped</span> and
+                                <span class="tests_unexpect">[% m.total_unexpectadly_succeeded %] unexpectedly succeeded</span>
+                                <br />
+                                <a href="[% detail_uri %]" title="Full smoke report">View full smoke report</a>
+                            </td>
+                            <td class="tags">
+                                <div width="5em">
+                                    [% FOR tag = smoke.tags.list %]
+                                    <!-- FIXME - bad css! -->
+                                    <span class="tagcloud3"><a href="[% uri_for("list", tag.name) %]">[% tag.name %]</a></span>
+                                    [% END %]
+                                </div>
+                            </td>
+                        </tr>
+                    [% END %]
+                [% END %]
+            </table>
+        </form>
+    </body>
+</html>
+

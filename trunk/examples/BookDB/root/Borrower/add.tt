@@ -1,0 +1,14 @@
+[% PROCESS scaffold/header.tt %]
+
+<p>[%message%]</p>
+[% USE table_class = Class('BookDB::M::BookDB::Borrower') %]
+<form action="[% c.uri_for('do_add') %]" method="post">
+    [% FOR column = table_class.columns('view') %]
+        <label class="title" for="[% column %]">[% column %]</label>
+        [% table_class.to_field(column).as_XML %]<p/>
+    [% END %]
+    <input type="submit" value="Add"/>
+</form>
+<p><a class="big" href="[% c.uri_for('list') %]">&gt; LIST</a></p>
+
+[% PROCESS scaffold/footer.tt %]

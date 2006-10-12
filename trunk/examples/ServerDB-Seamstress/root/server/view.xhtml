@@ -1,0 +1,33 @@
+[% INCLUDE header.xhtml %]
+[% INCLUDE navbar.xhtml %]
+[% INCLUDE servernavbar.xhtml %]
+
+<form action="/server/do_edit/[% server.name %]" method="post">
+<fieldset>
+	<legend><a href="/server/list">Server List</a> &gt; [% server.name %]</legend>
+	[% SET index = 0 %]
+	[% FOR field IN editableFields %]
+	[% UNLESS admin %]<p style="clear:left;">[% END %]
+	<label for="[% field %]"><span class="field">[% editableValues.$index %]:</span></label>
+	[% IF admin %]<input type="text" name="[% field %]" value="[% server.$field %]" size="30" /><br />[% ELSE %][% server.$field %]</p>[% END %]
+	[% index = index + 1 %]
+	[% END %]
+	
+	[% IF admin %]
+	<label for="submit"><span class="field"></span></label>
+	<input type="submit" value="Save Changes" /><br />
+	[% END %]
+	
+	[% SET index = 0 %]
+	[% FOR field IN roFields %]
+	<p style="clear:left;">
+	<label for="[% field %]"><span class="field">[% roValues.$index %]:</span></label>
+	[% server.$field %]
+	</p>
+	[% index = index + 1 %]
+	[% END %]
+	
+</fieldset>
+</form>
+
+[% INCLUDE footer.xhtml %]

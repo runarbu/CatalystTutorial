@@ -1,0 +1,34 @@
+Revision history for Perl extension Catalyst::Plugin::Authentication
+
+0.09
+        - be a bit more pedantic about checking values for definedness before
+          invoking methods on them
+
+0.08
+        - factor test applications out to files due to changes in Catalyst::Test
+        - don't load session at prepare time unless necessary
+
+0.07    2006-03-17 17:33:12
+        - allow base64 hashed passwords
+
+0.06    2006-03-14 19:23:50
+        - pass extra get_user args to store so they can be made use of
+
+0.05    2006-01-01 13:58:00
+        - Add debugging to Credential::Password
+        - Important doc fixes
+
+0.04
+        - With User::Hash and Store::Minimal together session will store
+          userid, not actual user object
+
+0.03    2005-12-03 18:00:00
+        - Added user_exists method.
+
+0.02    2005-11-29 11:39:00
+		- Fixed a typo (PLugin instead of Plugin) that caused user objects
+		  to not be restored from the session properly. Modified test suite
+		  to actually test for this case.
+
+0.01    2005-11-27 02:30:00
+        - Initial release.

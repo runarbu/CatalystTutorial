@@ -1,0 +1,33 @@
+Revision history for Perl extension Catalyst::Plugin::XMLRPC
+
+0.20  Mon Aug 14 18:40:16 CEST 2006
+        - First public release, version 0.20
+        - Removed global Data::Dumper::Indent
+        - Fixed use of 'an undefined value as a HASH reference' warning when
+          having no xmlrpc methods
+        - Bugfix: removed debugscreen garbage showing ARRAY instead of action
+          path
+        - Custom fault code handling patch from Alex Pavlovic
+
+0.10  Wed Mar  1 15:20:54 CET 2006
+        - Complete redesign, offering a much more Catalyst
+          like way of using XMLRPC
+
+0.06  Sun Nov 20 00:00:00 2005
+        - Added live tests
+
+0.05  Sun Nov 20 00:00:00 2005
+        - Fixed bugs
+
+0.04  Fri Nov 11 00:00:00 2005
+        - updated for Catalyst 5.5
+
+0.03  Sun May 15 00:00:00 2005
+        - added failure handling
+
+0.02  Sat Apr 23 23:00:00 2005
+        - changed namespace handling, now fooBar.barFoo will be
+          dispatched to fooBarbarFoo() in the actual class
+
+0.01  Thu Apr 07 16:00:00 2005
+        - original version.

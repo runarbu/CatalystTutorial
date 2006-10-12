@@ -1,0 +1,37 @@
+Revision history for Catalyst-Example-PagingAndSort
+
+0.0.1  Thu Dec  8 15:29:28 2005
+       Initial release.
+
+0.0.2  initial CPAN release
+
+0.0.3  Fri Jan 20 23:45:45 CET 2006
+- simplified templates dirs
+- model_class instead of table_class
+- destroy via form (POST)
+
+0.0.4 Sat Feb  4 17:30:19 CET 2006
+- added verification of submitted form values
+
+0.0.8 Tue Mar 14 16:20:41 CET 2006
+- model based on DBIx::Class::Schema
+- added some initial support for relations between tables (author Lars Balker Rasmussen)
+- adopted for Catalyst 1.56
+
+0.0.10 Mon Apr  3 16:16:48 CEST 2006
+- fixed bug with -short (thanks Jonathan Manning)
+- added menu with all available tables
+
+0.0.12 Tue Aug 22 15:43:44 CEST 2006
+- added one to many and many to many relations
+- added some authentication/authorisation framework
+- all datatype config goes now into generated DBIC delclarations
+- added some first tests
+- other big changes 
+
+0.0.14 Wed Aug 23 17:35:35 CEST 2006
+- Generating separate templates per Controller
+
+0.0.16 Mon Sep 18 08:48:30 CEST 2006
+- Generating alternative controllers (with model_widget implemented)
+

@@ -1,0 +1,18 @@
+﻿[% WRAPPER blog/layout %]
+
+<p>Found [% pager.total_entries %] aricles. Showing articles [% pager.first %] - [% pager.last %]</p>
+
+<a href="/[% c.request.path %]?p=[% pager.first_page %]">First Page</a>
+<a href="/[% c.request.path %]?p=[% pager.previous_page %]">Previous Page</a>
+<a href="/[% c.request.path %]?p=[% pager.next_page %]">Next Page</a>
+<a href="/[% c.request.path %]?p=[% pager.last_page %]">Last Page</a>
+
+[% WHILE ( article = articles.next ) %]
+<div class="article summary">
+    <h3>[% article.publication_date %]</h3>
+    <h1><a href="/article/[% article.uri%]">[% article.title %]</a></h1>
+    <p>[% article.summary %]</p>
+</div>
+[% END %]
+
+[% END %]

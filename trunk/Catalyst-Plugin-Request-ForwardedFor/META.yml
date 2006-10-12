@@ -1,0 +1,15 @@
+---
+name: Catalyst-Plugin-Request-ForwardedFor
+version: 0.01
+author:
+  - 'Christian Hansen, C<ch@ngmedia.com>'
+abstract: X-Forwarded-For
+license: perl
+requires:
+  Catalyst: 5.2
+  Net::Subnets: 0.21
+provides:
+  Catalyst::Plugin::Request::ForwardedFor:
+    file: lib/Catalyst/Plugin/Request/ForwardedFor.pm
+    version: 0.01
+generated_by: Module::Build version 0.2608

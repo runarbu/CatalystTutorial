@@ -1,0 +1,32 @@
+NAME
+    Catalyst::Plugin::Server - Base Server plugin for RPC-able protocols
+
+SYNOPSIS
+        use Catalyst qw/
+                Server
+                Server::XMLRPC
+            /;
+
+       MyAPP->register_server('soap', $blessed_reference);
+
+DESCRIPTION
+    Base plugin for XMLRPC and our future SOAP server. For further
+    information, see one of the Server plugins
+
+SEE ALSO
+    Catalyst::Plugin::Server::XMLRPC, Catalyst::Manual, Catalyst::Request,
+    Catalyst::Response, RPC::XML, "bin/rpc_client"
+
+AUTHORS
+    Jos Boumans (kane@cpan.org)
+
+    Michiel Ootjers (michiel@cpan.org)
+
+BUG REPORTS
+    Please submit all bugs regarding "Catalyst::Plugin::Server" to
+    "bug-catalyst-plugin-server@rt.cpan.org"
+
+LICENSE
+    This library is free software, you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+

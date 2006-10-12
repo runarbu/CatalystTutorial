@@ -1,0 +1,11 @@
+^build_packages.pl$
+^dojo\b
+^Dojo\b
+\B\.svn\b
+^\.project$
+^blib\b
+^pm_to_blib\b
+^MANIFEST.SKIP$
+^Makefile$
+tar.gz$
+.bak$

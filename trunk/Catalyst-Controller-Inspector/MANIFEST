@@ -1,0 +1,6 @@
+Build.PL
+Changes
+lib/Catalyst/Controller/Inspector.pm
+lib/Catalyst/Helper/Controller/Inspector.pm
+MANIFEST			This list of files
+META.yml

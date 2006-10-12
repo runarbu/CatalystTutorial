@@ -1,0 +1,17 @@
+Build.PL
+Changes
+lib/Image/Simple.pm
+lib/Image/Simple/Adaptor.pm
+lib/Image/Simple/GD.pm
+lib/Image/Simple/GraphicsMagick.pm
+lib/Image/Simple/ImageMagick.pm
+lib/Image/Simple/Imager.pm
+lib/Image/Simple/Imlib2.pm
+Makefile.PL
+MANIFEST			This list of files
+META.yml
+README
+simple.pl
+t/01use.t
+t/02pod.t
+t/03podcoverage.t

@@ -1,0 +1,45 @@
+NAME
+    Catalyst::Plugin::Dojo - Catalyst plugin to work with the Dojo
+    JavaScript / AJAX library.
+
+SYNOPSIS
+        # In your application class 
+        use Catalyst qw/Dojo/;
+
+DESCRIPTION
+    Provides methods to help use a Dojo library with your Catalyst
+    application.
+
+METHODS
+  base_tag
+    Returns a HTML "script" tag which will load the "dojo.js" file.
+
+    Assumes the "dojo.js" file is in "root/static/dojo/", which is the
+    location Catalyst::Helper::Dojo places the library in.
+
+        # in a TT template
+        [% dojo.base_tag %]
+
+SUPPORT
+    IRC:
+
+        Join #catalyst on irc.perl.org.
+
+    Mailing Lists:
+
+        http://lists.rawmode.org/mailman/listinfo/catalyst
+
+    For Dojo-specific support, see <http://dojotoolkit.org>.
+
+SEE ALSO
+    Catalyst::Helper::Dojo, HTML::Dojo, Catalyst::Helper
+
+    <http://dojotoolkit.org>
+
+AUTHOR
+    Carl Franks, "cfranks@cpan.org"
+
+LICENSE
+    This library is free software . You can redistribute it and/or modify it
+    under the same terms as perl itself.
+

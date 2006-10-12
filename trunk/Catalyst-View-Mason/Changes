@@ -1,0 +1,16 @@
+Revision history for Perl extension Catalyst::View::Mason.
+
+0.08  Xxx Xxx 00 00:00:00 2005
+        - Fixed Content-Type
+	- Stringify root.
+
+0.07  Wed Apr 27 21:00:00 2005
+        - updated for Catalyst5
+
+0.06  Sun Mar 20 00:50:21 2005
+        - bugfix: $c and $name not being set (Henry Laxen)
+        - bugfix: error in documentation
+        - bugfix: running under mod_perl
+
+0.03  Wed Mar 16 17:41:01 2005
+        - Initial release

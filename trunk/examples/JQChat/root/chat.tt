@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl">
+  <head>
+    <title></title>
+    <meta name="generator" content="HTML-Kit" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />    
+    <script type="text/javascript" src="[% c.uri_for('/static/jquery.js') %]"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+      // Update chat when the form is used:
+        $('form').submit(function(){
+          element = $('input[@name=input]').get(0);
+          mymessage   = element.value;
+          myname = $('input[@name=name]').get(0).value;
+          $.post('[% c.uri_for('/chat') %]', {message: mymessage, name: myname});
+          element.value = '';
+          return false;
+        });
+        updateChat();
+      });
+      
+      // Chat must also be updated when nothing is happening:
+      // We have to provide a random number or else IE will not refresh properly:
+      function updateChat() {
+        num = Math.random();
+        $('div.chatarea p').load('[% c.uri_for('/chat') %]?'+num);   
+        setTimeout('updateChat()', 1000);       
+      }
+    </script>
+    <style type="text/css">
+      .chatarea { width: 400px; height: 250px; border: 1px solid #f00; overflow: auto; }
+      input[name=input] { border: 1px solid #000; width: 350px; }
+      input[name=name] { border: 1px solid #000; width: 100px; }
+      input[type=submit] { border: 1px solid #000; width: 50px; }
+      p { margin: 0px; padding: 3px; font-family: sans-serif; font-size: 0.8em; }
+      em { font-size: 0.8em; color: #888; }
+    </style>
+  </head>
+  <body>
+    <h2>jQuery Chat (using Catalyst and SQLite)</h2>
+
+    Adapted by <a href="http://kieren.diment.org">Kieren Diment</a>
+    based on work by
+    <a href="http://www.gielberkers.com">Giel Berkers</a><br /><br />
+    <div class="chatarea">
+      <p></p>
+    </div>
+    <form>
+      <input type="text" name="input" value="" />
+      <input type="submit" value="ok" /><br />
+      Your name:<input type="text" name="name" value="[% c.req.param('name') || 'your name' %]" />      
+    </form>
+    <p>
+      This is a simple demonstration of how to use jQuery with Catalyst and SQLite to create a Javascript Chatbox.<br />
+      Of course, in real use you would get the name from a database, but this shows the idea.<br />
+      This script has still much room for improvement (such as autoscrolling to the bottom or a better way to delete<br />
+      old entries in the database). Any suggestions are welcome by <a href="mailto:kd@totaldatasolution.com">email</a>.<br />
+      <br />
+      Source code available from the Catalyst subversion repository:
+      <code> svn checkout http://dev.catalyst.perl.org/repos/Catalyst/trunk/examples/JQChat </code>
+
+    </p>
+  </body>
+</html>

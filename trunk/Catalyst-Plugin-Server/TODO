@@ -1,0 +1,8 @@
+TODO list for Catalyst::Plugin::Server
+
+- Fix bug which is pointed out by Alex Pavlovic causing 'method not found'
+  errors when prefix is the same as path with mod_fastcgi, see email on
+  Catalyst mailing list:
+  Subject: Re: [Catalyst] Catalyst::Plugin::Server::XMLRPC prefix option broken
+  under lighttpd
+  Date: Wed, 19 Jul 2006 22:02:29 -0700

@@ -1,0 +1,8 @@
+\B\.svn\b
+^\.project$
+^blib\b
+^pm_to_blib\b
+^MANIFEST.SKIP$
+^Makefile$
+tar.gz$
+.bak$

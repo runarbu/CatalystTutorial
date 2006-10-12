@@ -1,0 +1,12 @@
+.cvsignore
+Changes
+lib/Catalyst/LayerCake.pm
+lib/Catalyst/LayerCake/Helper.pm
+Makefile.PL
+MANIFEST
+META.yml			# Will be created by "make dist"
+README
+script/layercake.pl
+t/00-load.t
+t/pod-coverage.t
+t/pod.t

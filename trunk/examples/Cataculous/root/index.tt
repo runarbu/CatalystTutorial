@@ -1,0 +1,5 @@
+[% INCLUDE header.tt %]
+<a href="[% base %]autocomplete">AutoComplete</a><br/>
+<a href="[% base %]sortable">Sortable</a><br/>
+<a href="[% base %]dragdrop">DragDrop</a><br/>
+[% INCLUDE footer.tt %]

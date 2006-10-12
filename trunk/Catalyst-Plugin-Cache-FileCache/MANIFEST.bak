@@ -1,0 +1,5 @@
+Build.PL
+Changes
+lib/Catalyst/Plugin/Cache/FileCache.pm
+MANIFEST			This list of files
+META.yml

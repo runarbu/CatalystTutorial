@@ -1,0 +1,519 @@
+=== part 1 - dispatcher and component basics ===
+
+Start by running the 'catalyst.pl':
+
+    catalyst.pl MegaSuperAdmin
+    cd MegaSuperAdmin
+    open MegaSuperAdmin
+
+This creates a skeleton directory tree for an application.
+
+The top level files are mostly related to application deployment, and will not
+be introduced in this screencast.
+
+There are also four important directories: 'lib', 'root', 't', and 'script'.
+
+'script' contains a component creation script, a script to start the
+development server, and some handlers for deployment.
+
+Let's start the server:
+
+    ./script/megasuperadmin_server.pl -r
+
+The 'r' switch tells it to automatically restart when any of the application
+code changes.
+
+    http://localhost:3000/
+
+Now we're seeing a welcome screen, which contains various pointers to get you
+started writing an application.
+
+The next directory is 'root'. This is where all the auxiliary files for the app
+is stored. Right now 'root' has a bunch of Catalyst logos and a favicon file,
+used by the welcome screen.
+
+The 't' directory contains tests - these are just stubs which will check that
+your code compiles.
+
+    find t
+
+The last dir is 'lib'. 'lib' contains the actual code for the application.
+The only files that exist right now are the main application file,
+MegaSuperAdmin.pm, and the root controller.
+
+    find lib
+
+The main app file is used to configure the app.
+
+    open MegaSuperAdmin.pm
+
+The first bit of configuration is the list of plugins that is loaded:
+
+    ConfigLoader
+    Static::Simple
+
+We won't be interfacing directly with these plugins in this tutorial, but you
+can leave them in. You can look up their documentation if you're interested.
+
+    open MegaSuperAdmin/Controller/Root.pm
+
+The root controller is where all the top level actions reside, including the
+one that prints the welcome screen.
+
+    remove default action
+
+So now, with a clean slate, we can start demonstrating how things actually work.
+
+    sub foo {
+        my ( $self, $c ) = @_;
+
+    }
+
+An action in a Catalyst application is a class method defined in a controller
+component. It gets the context object as its first argument. The context will
+be explained shortly.
+
+To declare that a method is an action you must use one of the dispatch type
+attributes.  Catalyst actions can be private or public. A public action is one
+that has a URL and can be accessed by the browser.
+
+For example, one way to define public actions is to use the Path dispatch type:
+
+    sub foo : Path("/foo") {
+
+    reload /
+
+The error is here because we removed the default action - which is a bit like
+perl's AUTOLOAD subroutine.
+
+    load /foo
+
+As you can see, the page with the path has no error.
+
+The action we loaded is listed when the server restarts. You can see the method
+and the class are listed, as well as a private path used within Catalyst.
+
+Then Catalyst lists the "Loaded Path actions", which are accessible to the
+outside world.
+
+This is basically a mapping of external paths to private paths.
+
+If we change the path of our action, you can see that the public path is not
+tied to the method name. The private path, on the other hand, is.
+
+    Path("/bar")
+    reload
+    load /bar
+
+Now, let's discuss that '$c' variable.
+
+Inside actions, the $c object represents the hit that's being processed by the
+application. This includes the channels by which you send and receive data to
+or from the user, as well as a few other goodies.
+
+If we bring up the error page again, you can have a look inside this object.
+
+    http://localhost:3000/akljhat
+
+As you can see there are two interesting values - the request and the response,
+and there's also an empty hash reference called the stash. We'll touch on the
+stash in a bit.
+
+The request object represents the connection that the client made to the
+application. It contains all the data sent by the user agent, like a browser,
+to the application - this includes headers, cookies, parameters and so forth.
+It also contains metadata - the address from which the request came, and so forth.
+
+Catalyst dispatches actions by examining the request and trying to find an
+action that corresponds to the URI the user requested.
+
+The other object we see is the response object, which represents what you are
+sending back to the browser. It's pretty empty right now.
+
+This is pretty straight-forward. The documentation for L<Catalyst::Response>
+has all the possible methods as you need them.
+
+To make an interesting application the actions will need to actually do
+something - emit some kind of output.
+
+Let's add some behavior to our action:
+
+    sub foo : Path("/") {
+        my ( $self, $c ) = @_;
+
+        $c->response->body( <<BODY );
+    <html>
+        <title>The fabulous Catalyst moose page</title>
+        <body>
+            OMG LOLZ! I WROTE AA CATALYST APP! LOL!@!!
+        </body>
+    </html>
+    BODY
+
+    }
+
+The way we are going to output some data is by using the 'body' accessor of the
+response object. When the actions finish processing, this HTML text will be
+sent to the client.
+
+    reload
+
+Now that you know how to output HTML, let's write a horrible CGI with Catalyst.
+
+Well, actually, it won't be that horrible. first off, there's no need to parse
+QUERY_STRING on your own - Catalyst gives you access to them in the request
+object. That makes the CGIs slightly less awful.
+
+    sub foo : Path("/") {
+        my ( $self, $c ) = @_;
+
+        $c->res->headers->content_type("text/plain");
+
+        use Data::Dumper;
+        $c->res->output( Dumper( $c->req->params ) );
+    }
+
+    http://localhost:3000/?foo=bar&moose&foo=1
+
+Isn't that nice?
+
+You can also get a single parameter easily
+
+    sub foo : Path("/") {
+        my ( $self, $c ) = @_;
+
+        $c->res->headers->content_type("text/plain");
+
+        $c->res->output( sprintf "Hi, %s!", $c->req->param("name") );
+    }
+
+
+    http://syeeda.local:3000/?name=nothingmuch
+
+This infrastructure support is the lowest level of convenience that Catalyst
+provides. It's consistent across engines too - your application can run
+unmodified under FastCGI, the builtin server, or mod_perl.
+
+Now let's move on to the second, and much more important thing that Catalyst
+let's us do: organization.
+
+The little app we wrote is very small and doesn't need to be broken down.
+Larger applications, on the other hand, need to be separated in logical
+boundries, or they will grow out of control, becoming unmaintainable.
+
+Catalyst uses the Web Model-View-Controller approach. You may have heard the
+MVC acronym before - please try to forget it for a while. Instead, have a look
+at the technical details in the rest of the movie, which demonstrates
+controllers and views, and try to understand how they work.
+
+The second thing I'd like you to forget is the database. Not all web
+applications are database backed, and Catalyst is definitely not restricted to
+creating database frontends..
+
+Let's write a small application that actually does something...
+
+You may have noticed I named our project MegaSuperAdmin. We're going to write a
+lame administration panel with a few cute functions.
+
+Let's start with a simple one - a password generator.
+
+We'll try to start out organized and put the password generating action under a
+new controller, that has to do with passwords.
+
+The 'create' script is used to create new components for your application.
+
+Components is a vague term when used in the software development context. Here
+it's pretty simple though - just a piece of your application - a sub module -
+with a designated job.
+
+Specifically in Catalyst, controller components are groups of actions.
+
+    ./script/megasuperadmin_create.pl controller Passwords
+
+This script created the file Passwords.pm under lib/MegaSuperAdmin/Controller.
+
+Catalyst loads all components at startup, so you don't have to 'use' this module.
+
+    open Passwords.pm
+
+    remove useless stuff
+
+We're going to replace the commented out default action with our own.
+
+    sub generate : Local {
+
+    }
+
+You'll notice I'm using a new attribute. Local is a variant of Path which let's
+you type less.
+
+As you can see the public URL for the action represents its place in the
+controller hierarchy - 'Local' means that we want the public path to be the
+same as the private path.
+
+We can also use the Global attribute
+
+    sub generate : Global {
+
+This attribute sets the public path of the action to be the method name.
+
+Let's use 'Local' again, it's more appropriate.
+
+    sub generate : Local {
+
+To generate the passwords we'll be using the Crypt::PassGen module from the
+CPAN.
+
+We're going to display a very simple page, which just shows one password per
+line.
+
+    sub generate : Local {
+        my ( $self, $c ) = @_;
+
+        my $words = 10;
+        my $letters = 8;
+
+        my @passwords = passgen( NWORDS => $words, NLETT => $letters );
+        
+        my $html = q{
+    <html>
+        <head>
+            <title>Password Generator</title>
+        </head>
+
+        <body>
+    } .  join("\n", map { "$_<br>" } @passwords ) . q{
+        </body>
+    </html>
+    };
+
+        $c->res->body( $html );
+    }
+
+    http://localhost:3000/passwords/generate
+
+Isn't that nice?
+
+Now let's add some interactivity, with a simple form to control the parameters
+we sent to 'passgen'.
+
+    sub generate : Local {
+        my ( $self, $c ) = @_;
+
+        my $words = $c->req->param("words") || 10;
+        my $letters = $c->req->param("letters") || 8;
+    
+        my $action_uri = $c->uri_for( 'generate' );
+
+        my @passwords = passgen( NWORDS => $words, NLETT => $letters );
+        
+    my $html = qq{
+    <html>
+        <head>
+            <title>Password Generator</title>
+        </head>
+
+        <body>
+            <form method="get" action="$action_uri">
+                Number of words: <input type="text" name="words" value="$words"/> <br>
+                Number of letters: <input type="text" name="letters" value="$letters"/> <br>
+                <input type="submit" value="generate" />
+            </form>
+        } . join("\n", map { "$_<br>" } @passwords ) . q{
+        </body>
+    </html>};
+
+        $c->res->body( $html );
+    }
+
+There is a problem with this code though.
+
+    enter 'crap' into form
+
+If you input invalid data, nothing happens. But it could be worse - the bad
+data could be fed somewhere where it might do some damage, in a more complex
+application.
+
+The way we generate the form is also pretty hideous.
+
+There's a module called HTML::Widget which solves both of these problems for
+us, and it has a convenient Catalyst plugin too.
+
+First we load the Catalyst::Plugin::HTML::Widget plugin by adding it to the
+plugin list.
+
+    use Catalyst qw/-Debug HTML::Widget/;
+
+Next we'll create a widget named "passgen",
+
+    my $w = $c->widget("passgen");
+    $w->action( $c->uri_for("generate") );
+    $w->method( "get" );
+
+and add two fields:
+
+    $w->element( Textfield => "words" )->label("Number of words");
+    $w->element( Textfield => "letters" )->label("Number of letters");
+
+    $w->element( Submit => "submit" )->value( "Generate" );
+
+Then our display code can just ask the widget to dump itself as XHML:
+
+    <body> } .  $w->process->as_xml . join...
+
+Next we'll add some constraints:
+
+    $w->constraint( Integer => qw/words letters/ );
+    $w->constraint( Range => qw/words letters/ )->min( 1 );
+
+Now let's extract the validated values:
+
+    my $stash     = $c->stash;
+    my $validated = $c->widget_results("passgen");
+
+    my $words   = $stash->{words}   = $validated->valid("words") || 10;
+    my $letters = $stash->{letters} = $validated->valid("letters") || 8;
+
+    ####
+
+    $validated->as_xml
+
+At this point this code is *really* screaming for some cleanup. This is the
+organization bit we've been talking about.
+
+While controllers' jobs are to perform the actual functionality of your
+application (do some behavior based on input, return a result), views are
+concerned with displaying the results of this functionality.
+
+In Catalyst views are technically just controllers. The distinction lies solely
+in their usage and responsibilities.
+
+Let's begin by splitting up our action into two actions - one for logic, and
+one for display - a controller action, and a view action.
+
+    sub generate : Local {
+        my ( $self, $c ) = @_;
+
+        my $w = $c->widget("passgen");
+        $w->action( $c->uri_for("generate") );
+        $w->method( "get" );
+
+        $w->element( Textfield => "words" )->label("Number of words");
+        $w->element( Textfield => "letters" )->label("Number of letters");
+
+        $w->element( Submit => "submit" )->value( "Generate" );
+
+        $w->constraint( Integer => qw/words letters/ );
+        $w->constraint( Range => qw/words letters/ )->min( 1 );
+
+
+        my $validated = $c->widget_results("passgen");
+
+        my $words   = $stash->{words}   = $validated->valid("words") || 10;
+        my $letters = $stash->{letters} = $validated->valid("letters") || 8;
+
+        $stash->{passwords} = [ passgen( NWORDS => $words, NLETT => $letters ) ];
+
+        $c->forward("display");
+    }
+
+    sub display : Private {
+        my ( $self, $c ) = @_;
+
+        my $html = qq{
+    <html>
+        <head>
+            <title>Password Generator</title>
+        </head>
+
+        <body>
+        }
+        . $c->widget_results("passgen")->as_xml
+        . join("\n", map { "$_<br>" } @{ $c->stash->{passwords} } ) .
+        q{</body> </html>};
+
+        $c->res->body( $html );
+    }
+
+The display action is a private action - this means it has no URL that the
+browser can refer to. The only way to invoke it is by forwarding to it from
+inside the application.
+
+By allowing actions to forward to each other you can separate functionality
+very easily. This let's you separate the parts of your application into smaller
+chunks that make sense alone. When you do that, not only is your code cleaner,
+but you can also avoid repeating yourself.
+
+Catalyst's guiding principal is the DRY principal - Don't Repeat Yourself.
+
+The display action's role will be view - it formats results generated by the
+controller for the client.
+
+The stash is used to accumulate values to pass around between actions - this is
+how the controller tells the view what to display.
+
+This code is still pretty ugly just because of the way it generates HTML, but
+the important idea behind this refactoring was that the part that generates
+passwords, and the part that writes HTML are now separate. This encourages
+cleaner design.
+
+Let's clean up the HTML generation a bit too - after all, the CPAN has
+wonderful tools for that.
+
+We'll start by creating a Template Toolkit view
+
+    ./script/megasuperadmin_create.pl view TT TT
+
+This generated a single file
+
+    lib/MegaSuperAdmin/View/TT.pm
+
+that defines a view component that inherits from Catalyst::View::TT. The
+component is pretty empty, except for 'use base'.
+
+Before we actually see how it works, let's see what it's good for.
+
+The Template Toolkit syntax is pretty straight forward. Right now I'm creating
+a template in 'root' based on our existing HTML.
+
+    <html>
+        <head>
+            <title>Password Generator</title>
+        </head>
+
+        <body>
+            [% c.widget_results("passgen").as_xml %]
+
+            [% FOR password = passwords %]
+                [% password %]<br/>
+            [% END %]
+        </body>
+    </html>
+
+As you can see this slightly cleans up the access to the values, and the code
+is more readable as HTML.
+
+
+The last thhing we need to do is tell the TT view to process this template:
+
+        $c->stash->{template} = 'password_gen.tt';
+        $c->forward( $c->view("TT") );
+    
+The difference is that we're putting the name of the template in the stash, and
+then forwarding not to an action but to a component. When we are forwarding to
+a component (a class name, basically) the 'process' method gets invoked
+automatically to handle the forward.
+
+If you look at the source to Catalyst::View::TT you can see how process is
+defined.
+
+After figuring out which template name to use it constructs the variable hash.
+This contains some default entries, like 'c', and the entire contents of the
+stash.
+
+Once it constructs that bit it uses the template toolkit engine to process the
+template, and finally it emits the output.
+
+See you in part 2!
+
+

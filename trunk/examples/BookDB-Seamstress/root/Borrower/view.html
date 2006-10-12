@@ -1,0 +1,24 @@
+ <div class="columns_view">
+    <div class="column_name">column_name</div>
+    <div class="column_value">column_value</div>
+ </div>	
+
+
+<table>
+  <tr>
+    <th>Book</th><th>Borrowed</th>
+    <th/>
+  </tr>
+  <tr class="data_row">
+    <td class=title>[%book.title%]</td>
+    <td class=borrowed>[%book.borrowed%]</td>
+    <td class=book_actions>
+      <a class=book_view href="[% c.uri_for('view/' , book.id) %]">View</a> 
+      <a class=book_return href="[% c.uri_for('do_return' , book.id) %]">Return</a>
+    </td>
+  </tr>
+
+</table>
+
+<p><a class="big" href="/borrower/list">&gt; LIST</a></p>
+

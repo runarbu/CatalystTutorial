@@ -1,0 +1,11 @@
+<h1>Add Borrower</h1>
+    <form action="/borrower/do_add" method="post">
+      <div>
+        <label class="title" for="[% column %]">[% column %]</label>
+        <span>[% table_class.to_field(column).as_XML %]</span><p/>
+      </div>
+      <input type="submit" value="Add"/>
+      </form>
+<p><a class="big" href="/borrower/list">&gt; LIST</a></p>
+
+

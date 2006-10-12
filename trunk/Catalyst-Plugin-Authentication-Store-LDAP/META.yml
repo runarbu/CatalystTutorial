@@ -1,0 +1,16 @@
+abstract: Authenticate Users against LDAP Directories
+author: 'Adam Jacob <holoway@cpan.org>'
+build_requires:
+  Test::More: 0
+distribution_type: module
+generated_by: Module::Install version 0.62
+license: perl
+name: Catalyst-Plugin-Authentication-Store-LDAP
+no_index:
+  directory:
+    - inc
+    - t
+requires:
+  Catalyst::Plugin::Authentication: 0
+  Net::LDAP: 0
+version: 0.051

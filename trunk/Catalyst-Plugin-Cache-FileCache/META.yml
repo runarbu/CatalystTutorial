@@ -1,0 +1,16 @@
+---
+name: Catalyst-Plugin-Cache-FileCache
+version: 0.5
+author:
+  - |-
+    Christian Hansen, C<ch@ngmedia.com>
+    Sebastian Riedel C<sri@oook.de>
+abstract: File cache
+license: perl
+requires:
+  Cache::FileCache: 0
+provides:
+  Catalyst::Plugin::Cache::FileCache:
+    file: lib/Catalyst/Plugin/Cache/FileCache.pm
+    version: 0.5
+generated_by: Module::Build version 0.26

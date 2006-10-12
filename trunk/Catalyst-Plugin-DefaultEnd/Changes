@@ -1,0 +1,22 @@
+Revision history for Perl extension Catalyst::Plugin::DefaultEnd
+
+0.06  27-04-2006 11:45:00
+	- change to clustering () for performance.
+    - Add 401 to list of urls not to render template for.
+
+0.05  27-03-2006 00:02:00
+	- Don't forward for HEAD requests
+	- Don't forward for 204s.
+	
+0.04  11-09-2005 16:32:00
+        - Do not forward to view if there are errors, and no template
+        - check body for definedness, not true/false.
+        - added live tests
+
+0.03  11-09-2005 10:21:00
+	- Added Makefile.PL and README to manifest :O
+0.02  06-09-2005 14:54:00
+	- Changed to Build.PL
+	- Added README
+0.01  29-08-2005 17:13:00
+        - original version.

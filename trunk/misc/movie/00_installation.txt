@@ -1,0 +1,6 @@
+== part 0 - installation ==
+
+* CPAN.pm
+* mst's script
+* Task::Catalyst
+* supported OSs

@@ -1,0 +1,54 @@
+package ServerDB;
+
+#
+# Server Database
+# Andy Grundman <andy@hybridized.org>
+# April 2005
+#
+
+use strict;
+use Catalyst qw/-Debug FormValidator Session::FastMmap Static::Simple Authentication::CDBI/;
+use YAML ();
+
+our $VERSION = '1.02';
+
+ServerDB->config( YAML::LoadFile( ServerDB->config->{home} . '/ServerDB.yml' ) );
+ServerDB->setup;
+
+sub default : Private {
+	my ($self, $c) = @_;
+	$c->res->redirect('/server/list');
+}
+
+sub auto : Private {
+	my ($self, $c) = @_;
+	$c->stash->{admin} = $c->roles('admin');
+	return 1;
+}
+
+sub begin : Global {
+	my ($self, $c) = @_;
+	
+	# force login for all pages
+	unless ($c->req->{user}) {
+		$c->detach('/login/login');
+	}
+}
+
+sub end : Global {
+  my ($self, $c) = @_;
+
+  die if $c->req->params->{die};
+
+  unless ($c->res->output) {
+    if (exists ($c->stash->{LOOM})) {
+      $c->forward('ServerDB::View::Seamstress');
+    } else {
+      $c->stash->{template} ||= "server/list.xhtml";
+      $c->forward('ServerDB::V::TT') 
+    }
+  }
+
+}
+
+1;

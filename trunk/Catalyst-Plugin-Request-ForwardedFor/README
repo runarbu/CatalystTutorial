@@ -1,0 +1,25 @@
+NAME
+    Catalyst::Plugin::Request::ForwardedFor - X-Forwarded-For
+
+SYNOPSIS
+        use Catalyst qw[Request::ForwardedFor];
+
+        MyApp->config( subnets => [ '192.168.0.0/24', '127.0.0.1/32' ] );
+
+DESCRIPTION
+    "X-Forwarded-For"
+
+OVERLOADED METHODS
+    prepare_headers
+    setup
+
+SEE ALSO
+    Catalyst.
+
+AUTHOR
+    Christian Hansen, "ch@ngmedia.com"
+
+LICENSE
+    This library is free software. You can redistribute it and/or modify it
+    under the same terms as perl itself.
+

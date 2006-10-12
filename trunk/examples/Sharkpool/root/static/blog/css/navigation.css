@@ -1,0 +1,28 @@
+#crumbtrail ul {
+  margin: 0 0 0 1em;
+  padding: 0;
+  list-style: none;
+}
+
+#crumbtrail li {
+  display: inline;
+}
+
+#crumbtrail li:before { 
+  content: "/ "; 
+}
+
+#crumbtrail li:first-child:before { 
+  content: ""; 
+}
+
+#menu ul {
+  margin: 0 0 0 1em;
+  padding: 0;
+  list-style: none;
+}
+
+#menu li {
+  display: inline;
+  padding-right: 1em;
+}

@@ -1,0 +1,78 @@
+=head1 NAME 
+
+Catalyst::Plugin::ConfigLoader::Manual - Guide to using the ConfigLoader plugin
+
+=head1 BASIC USAGE
+
+    package MyApp;
+    
+    use Catalyst qw( ConfigLoader ... );
+
+=head1 CONFIG FORMATS
+
+=head2 Config::General
+
+    name = TestApp
+    <Component Controller::Foo>
+        foo bar
+    </Component>
+    <Model Baz>
+        qux xyzzy
+    </Model>
+
+=head2 INI
+
+    name=TestApp
+    
+    [Controller::Foo]
+    foo=bar
+    
+    [Model::Baz]
+    qux=xyzzy
+
+=head2 JSON
+
+    {
+        "name": "TestApp",
+        "Controller::Foo": {
+            "foo": "bar"
+        },
+        "Model::Baz": {
+            "qux": "xyzzy"
+        }
+    }
+
+=head2 Perl
+
+    {
+        name => 'TestApp',
+        'Controller::Foo' => {
+            foo => 'bar'
+        },
+        'Model::Baz' => {
+            qux => 'xyzzy'
+        }
+    }
+
+=head2 XML
+
+    <config>
+        <name>TestApp</name>
+        <component name="Controller::Foo">
+            <foo>bar</foo>
+        </component>
+        <model name="Baz">
+            <qux>xyzzy</qux>
+        </model>
+    </config>
+
+=head2 YAML
+
+    ---
+    name: TestApp
+    Controller::Foo:
+        foo: bar
+    Model::Baz:
+        qux: xyzzy
+
+=cut

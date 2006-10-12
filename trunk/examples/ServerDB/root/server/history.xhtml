@@ -1,0 +1,26 @@
+[% INCLUDE header.xhtml %]
+[% INCLUDE navbar.xhtml %]
+[% INCLUDE servernavbar.xhtml %]
+
+<form action="/server/do_edit/[% server.name %]" method="post">
+<fieldset>
+	<legend><a href="/server/list">Server List</a> &gt; <a href="/server/view/[% server.name %]">[% server.name %]</a> &gt; Support History</legend>
+
+	<table id="matrix">
+    	<tr><th>Type</th><th>Date</th></tr>
+		[%  SET count = 0;
+		FOR history IN server.supporthistories;
+			 SET count = count + 1;
+			"<tr ";
+			' class="alternate"' IF count % 2;
+			">";%]
+				<td>[% history.type %]</td>
+				<td>[% history.date %]</td>
+			</tr>
+		[% END %]
+	</table>
+	
+</fieldset>
+</form>
+
+[% INCLUDE footer.xhtml %]

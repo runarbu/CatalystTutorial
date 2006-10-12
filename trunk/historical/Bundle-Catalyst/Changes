@@ -1,0 +1,22 @@
+Revision history for Perl extension Bundle::Catalyst.
+
+0.07  Sun Nov 20 15:00:00 2005
+       - Fixed the bundle
+
+0.06  Sun Nov 20 15:00:00 2005
+       - Added YAML
+
+0.05  Sat Nov 19 15:00:00 2005
+       - Added DFV::Simple plugin
+
+0.04  Thu Nov 03 15:00:00 2005
+       - Updated with new stuff
+
+0.03  Fri Apr 15 15:00:00 2005
+       - Updated to include prototype plugin.
+
+0.02  Mon Feb 28 10:00:00 2005
+        - updated list
+
+0.01  Fri Jan 28 22:00:00 2005
+        - initial release

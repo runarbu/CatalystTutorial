@@ -1,0 +1,20 @@
+[% INCLUDE header.xhtml %]
+[% INCLUDE navbar.xhtml %]
+[% INCLUDE servernavbar.xhtml %]
+
+<form action="/server/apps/doEdit/[% app.id %]" method="post">
+<fieldset>
+	<legend><a href="/server/list">Server List</a> &gt; <a href="/server/view/[% server.name %]">[% server.name %]</a> &gt; <a href="/server/apps/[% server.name %]">Applications</a> &gt; Edit Application</legend>
+
+	<label for="type"><span class="field">Type:</span></label>
+	<input type="text" name="type" value="[% app.type %]" /><br />
+	
+	<label for="description"><span class="field">Description:</span></label>
+	<input type="text" name="description" value="[% app.description %]" />
+	
+	<label for="submit"><span class="field"></span></label>
+	<input type="submit" value="Save Changes" /> <input type="submit" name="delete" value="Delete Application" /><br />
+</fieldset>
+</form>
+
+[% INCLUDE footer.xhtml %]

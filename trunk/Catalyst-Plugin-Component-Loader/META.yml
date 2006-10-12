@@ -1,0 +1,14 @@
+---
+name: Catalyst-Plugin-Component-Loader
+version: 0.1
+author:
+  - 'Christian Hansen, C<ch@ngmedia.com>'
+abstract: Catalyst Component Loader
+license: perl
+requires:
+  Catalyst: 5.20
+provides:
+  Catalyst::Plugin::Component::Loader:
+    file: lib/Catalyst/Plugin/Component/Loader.pm
+    version: 0.1
+generated_by: Module::Build version 0.2608

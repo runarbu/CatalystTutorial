@@ -1,0 +1,9 @@
+--- #YAML:1.0
+name: Catalyst-Plugin-Cache-FastMmap
+version: 0.6
+author:
+  - Christian Hansen, C<ch@ngmedia.com>
+Sebastian Riedel C<sri@oook.de>
+abstract: Mmap cache
+license: perl
+generated_by: Module::Build version 0.2611, without YAML.pm

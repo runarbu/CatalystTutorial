@@ -1,0 +1,28 @@
+Revision history for Perl extension Catalyst::Plugin::StackTrace
+
+0.06    2006-07-25 11:52:15
+        - fixed bug where $@ would get reset for exception objects
+        - changed stylesheets to match Catalyst 5.7000
+
+0.05    2006-07-13 16:34:11
+        - fixed bug where an exception in the $SIG{__DIE__} handler would cause
+          the original exception to be lost
+        - increased contrast on error line (Christopher H. Laco)
+        - added reverse option (Christopher H. Laco)
+
+0.04    2006-03-26 22:30:00
+        - Properly handle the case where finalize_error is called but there
+          is no stacktrace.  This happens if the user manually sets $c->error.
+
+0.03    2006-03-16 23:40:00
+        - Made the stack trace fill the entire width.
+        - Added respect_overload option for Devel::StackTrace (Stephen
+          Steneker)
+
+0.02    2006-01-01 14:00:00
+        - Changed _stacktrace from class data to accessor.
+        - Fixed test 4 in 04trace to handle different error messages
+          from different Perl versions.
+
+0.01    2005-12-30 23:20:00
+        - initial release

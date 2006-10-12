@@ -1,0 +1,10 @@
+\._
+SCCS\/
+^blib
+^Makefile$
+^pm_to_blib
+^dev-bin
+^TODO
+^MANIFEST.SKIP
+\.bak$
+\.DS_Store

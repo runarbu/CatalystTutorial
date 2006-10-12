@@ -1,0 +1,7 @@
+[% FOREACH message IN messages %]
+<div id="messages_[% message.id %]" class="message">
+    <span class="stamp">[% message.stamp %]</span>
+    <span class="author" style="color:#[% message.hex_color %];">[% FILTER html %][% message.author %][% END %]&gt;</span>
+    <span class="content">[% message.parsed_content %]</span>
+</div>
+[% END %]

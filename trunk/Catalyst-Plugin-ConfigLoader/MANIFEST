@@ -1,0 +1,16 @@
+Build.PL
+Changes
+lib/Catalyst/Plugin/ConfigLoader.pm
+lib/Catalyst/Plugin/ConfigLoader/Manual.pod
+MANIFEST
+t/01-use.t
+t/10-live_auto.t
+t/20-mock_load.t
+t/98-pod_coverage.t
+t/99-pod.t
+t/lib/TestApp.pm
+t/lib/TestApp/testapp.pl
+t/lib/TestApp/Controller/Config.pm
+t/mockapp/mockapp.pl
+t/mockapp/mockapp_local.pl
+

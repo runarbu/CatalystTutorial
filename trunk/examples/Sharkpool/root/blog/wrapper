@@ -1,0 +1,4 @@
+﻿
+<div id="wrapper">
+[% content %]
+</div>

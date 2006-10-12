@@ -1,0 +1,43 @@
+[% INCLUDE header.xhtml %]
+[% INCLUDE navbar.xhtml %]
+[% INCLUDE servernavbar.xhtml %]
+
+<fieldset>
+	<legend><a href="/server/list">Server List</a> &gt; <a href="/server/view/[% server.name %]">[% server.name %]</a> &gt; Applications</legend>
+	
+	[% IF admin %]
+	<p><a href="javascript:toggle('addAppForm');" title="Add application">Add application</a></p>
+	<div id="addAppForm">
+		<form action="/server/apps/add/[% server.name %]" method="post">	
+		<fieldset>
+			<legend>New Application</legend>
+			<label for="type"><span class="field">Type:</span></label>
+			<input type="text" name="type" /><br />
+			
+			<label for="description"><span class="field">Description:</span></label>
+			<input type="text" name="description" />
+			
+			<label for="submit"><span class="field"></span></label>
+			<input type="submit" value="Add Application" /><br />	
+		</fieldset>
+		</form>
+	</div>	
+	[% END %]
+	
+	<table id="matrix">
+    	<tr><th>Type</th><th>Description</th></tr>
+		[%  SET count = 0;
+		FOR app IN server.applications;
+			 SET count = count + 1;
+			"<tr ";
+			' class="alternate"' IF count % 2;
+			' onClick="window.location.href=\'/server/apps/edit/' _ app.id _ '\'"' IF admin;
+			">";%]
+				<td>[% app.type %]</td>
+				<td>[% app.description %]</td>
+			</tr>
+		[% END %]
+	</table>
+</fieldset>
+
+[% INCLUDE footer.xhtml %]

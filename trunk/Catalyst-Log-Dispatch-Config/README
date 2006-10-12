@@ -1,0 +1,21 @@
+NAME
+    Catalyst::Log::Dispatch::Config - Log::Dispatch::Config
+
+SYNOPSIS
+        use Catalyst::Log::Dispatch::Config;
+
+        Catalyst::Log::Dispatch::Config->configure('/path/to/log.conf');
+
+        MyApp->log( Catalyst::Log::Dispatch::Config->instance );
+
+DESCRIPTION
+SEE ALSO
+    Log::Dispatch::Config, Catalyst::Log::Dispatch, Catalyst::Log, Catalyst.
+
+AUTHOR
+    Christian Hansen, "ch@ngmedia.com"
+
+LICENSE
+    This library is free software. You can redistribute it and/or modify it
+    under the same terms as perl itself.
+

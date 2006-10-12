@@ -1,0 +1,11 @@
+[% INCLUDE header.tt %]
+
+<ul id="sort_me">
+    <li id="1">1 DRAG ME!</li>
+    <li id="2">2 DRAG ME!</li>
+    <li id="3">3 DRAG ME!</li>
+</ul>
+[% url = base _ 'sortable/sort' %]
+[% c.prototype.sortable_element( 'sort_me', { url => url } ) %]
+
+[% INCLUDE footer.tt %]

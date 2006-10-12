@@ -1,0 +1,10 @@
+﻿
+<div id="sidebar">
+
+    [% PROCESS blog/boxes/search %]
+
+    <h3>Recent</h3>
+
+    <h3>Links</h3>
+
+</div>

@@ -1,0 +1,8 @@
+1.01    Thu Jun  2 21:49:00 EDT 2005
+            - Removed all hardcoded path names
+            - Switched to updated script files
+              Note: The serverdb_server.pl file uses an alternate
+              method of loading the library. 
+1.00    Fri Apr 15 10:54:10 EDT 2005
+            - initial release
+

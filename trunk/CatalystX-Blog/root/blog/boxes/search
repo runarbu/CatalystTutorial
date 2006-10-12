@@ -1,0 +1,10 @@
+﻿<div class="box">
+
+    <h3>Search</h3>
+    
+    <form method="post" action="/article/search" enctype="multipart/form-data" accept-charset="utf-8">
+        <input type="text" name="search" id="search" />
+        <input type="submit" value="search" class="hidden" />
+    </form>
+
+</div>

@@ -1,0 +1,20 @@
+﻿[% WRAPPER blog/layout %]
+[%
+    next     = article.next_published;
+    previous = article.previous_published; 
+%]
+
+<h1>[% article.title %]</h1>
+<h3>[% article.publication_date.ymd %]</h3>
+<p>[% article.summary %]</p>
+<p>[% article.content %]</p>
+
+[% IF previous %]
+    Previous: <a href="/article/[% previous.uri %]">[% previous.title %]</a><br />
+[% END %]
+
+[% IF next %]
+    Next: <a href="/article/[% next.uri %]">[% next.title %]</a><br />
+[% END %]
+
+[% END %]

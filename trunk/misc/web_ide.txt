@@ -1,0 +1,95 @@
+Catalyst::Component::WebIDE
+
+This is a web IDE thing to assist in efficient development.
+
+
+    this is a reusable controller, the user can put it anywhere
+
+
+
+    it has an iframe, that loads the rest of the app
+
+    it has a js link at the top that lets you type uri_for expressions and get them loaded
+
+    it lets you view logs
+
+    it lets plugins export tools (clear session, force auth, etc etc)
+
+    it lets you view and [temporarily] edit config
+
+    it lets you edit templates (exported by View::TT as a dev tool)
+
+    it lets you view docs for plugins, components, tools (used by components, like Template), modules, and the app itself (inspector)
+
+    it lets you use halos if your view supports them
+
+    it lets you intercept the flow of the app with dump points (e.g. dump the stash before calling /foo/bar)
+
+    it lets you view the flow of the app like the dump at the end of every request
+
+    it integrates with selinium to make test writing easier
+
+    it lets you restart the webserver
+
+    it lets you fake requests with all sorts of parameters
+
+    it lets you trap form submits and view/verify/edit them before they really get sent
+
+    it lets you fake return values from ajax requests (as supported by ajax lib)
+
+    it makes the stack dump interactive (click to go to file, etc)
+
+    it lets you run commands (like gvim file such and such) easily
+
+    it lets you invoke non public actions (request mocking, dispatch cycle overriding - a bit like a cont)
+
+    it lets you invoke regex actions without matching the pattern (request mocking)
+
+
+Usage:
+
+    enter the URL for the IDE...
+
+    It loads, with an empty iframe
+
+    at the bottom are several pane tabs. Clicking on them opens the tabs revealing various tools.
+
+    at the top is the URL bar
+
+    everything is ajax driven
+
+
+plugin structure:
+
+    when the component is loaded it introspects the app and looks for every plugin component etc. It then asks each of these if it supports the dev component, and if not it tries to load a component with a matching name, and if there's nothing like that it loads the generic component for that app part. A reload of the editor interface introspects everything all over again, to minimize bad caching.
+
+    components are entities in the app - together they consist a model for cat applications.
+
+    this model has several "views" - the doc view, the reflection view, the tool view - components can provide content for any of these views.
+
+    This is then mined by the IDE controller which constructs a ui to expose the model, and also invokes it.
+
+
+
+
+User stories:
+
+    i want to process the form without writing the display yet or vice versa (write the display before processing)
+
+    i want to test authorization
+
+    i want to test that the guest cart is merged to the user cart correctly
+
+    i want to check edge cases
+
+    i want to fix an error that shouldn't be there (the debug screen helps but you often want more info - the log, the request flow (who called who), etc).
+
+    i want to have an automatic CRUD thing for Q&D data entry/checking while I debug/create my "smart" views on the DB
+
+    i want to rarely leave my web browser when hacking simple things, like UI tweaks (think firefox web developer)
+
+    i want something to help me write tests
+
+    i want to be able to get debug dumps for requests that didn't end in an error, too
+
+    i want to send mock data to my ajax handlers

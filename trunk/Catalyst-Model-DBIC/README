@@ -1,0 +1,46 @@
+NAME
+    Catalyst::Model::DBIC - DBIC Model Class
+
+SYNOPSIS
+        # use the helper
+        create model DBIC DBIC dsn user password
+
+        # lib/MyApp/Model/DBIC.pm
+        package MyApp::Model::DBIC;
+
+        use base 'Catalyst::Model::DBIC';
+
+        __PACKAGE__->config(
+            dsn           => 'dbi:Pg:dbname=myapp',
+            password      => '',
+            user          => 'postgres',
+            options       => { AutoCommit => 1 },
+            relationships => 1
+        );
+
+        1;
+
+        # As object method
+        $c->comp('MyApp::Model::DBIC::Table')->search(...);
+
+        # As class method
+        MyApp::Model::DBIC::Table->search(...);
+
+DESCRIPTION
+    This is the "DBIx::Class" model class. It's built on top of
+    "DBIx::Class::Loader".
+
+  new
+    Initializes DBIx::Class::Loader and loads classes using the class
+    config. Also attempts to borg all the classes.
+
+SEE ALSO
+    Catalyst, DBIx::Class DBIx::Class::Loader
+
+AUTHOR
+    Sebastian Riedel, "sri@cpan.org"
+
+COPYRIGHT
+    This program is free software, you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+

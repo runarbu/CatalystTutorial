@@ -1,0 +1,9 @@
+Changes
+MANIFEST
+META.yml # Will be created by "make dist"
+Makefile.PL
+README
+lib/Catalyst/Engine/JobQueue/POE.pm
+t/01use.t
+t/02pod.t
+t/03podcoverage.t

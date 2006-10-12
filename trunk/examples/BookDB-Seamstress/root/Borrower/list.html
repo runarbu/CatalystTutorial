@@ -1,0 +1,19 @@
+<table id="borrowers">
+<caption>Table: List of Borrowers</caption>
+  <tr id=tr_th>
+    <th class=th_column>[% column %]</th>
+    <th/>
+  </tr>
+  <tr class="alt">
+    <td class=name>[% object.$column %]</td>
+    <td class=email>[% object.$column %]</td>
+    <td>
+      <a href="[% c.uri_for('view', object.id) %]">View</a>
+      <a href="[% c.uri_for('edit', object.id) %]">Edit</a>
+      <a href="[% c.uri_for('destroy', object.id) %]">Destroy</a>
+    </td>
+  </tr>
+</table>
+
+<p><a class="big" href="/borrower/add">+ ADD</a></p>
+

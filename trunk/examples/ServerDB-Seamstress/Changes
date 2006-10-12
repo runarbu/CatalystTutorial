@@ -1,0 +1,17 @@
+2006-01-26  metaperl  <metaperl@gmail.com>
+
+	* Login.pm had a cyclic loop in sub login. patched locally and in
+	tt source.
+
+	* modified end so that LOOMs would render when available.
+
+	* ran helper script to create Seamstress view
+
+1.01    Thu Jun  2 21:49:00 EDT 2005
+            - Removed all hardcoded path names
+            - Switched to updated script files
+              Note: The serverdb_server.pl file uses an alternate
+              method of loading the library. 
+1.00    Fri Apr 15 10:54:10 EDT 2005
+            - initial release
+

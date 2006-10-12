@@ -1,0 +1,7 @@
+<html>
+    <head>
+        <title>[% name %]</title>
+        [% c.prototype.define_javascript_functions %]
+    </head>
+    <body>
+        <a href="[% base %]">[% name %]</a><br/><br/>

@@ -1,0 +1,30 @@
+    <form action="/server/do_edit/[% server.name %]" method="post">
+      <fieldset>
+	<legend>
+	  <a href="/server/list">Server List</a>
+	  server.name
+	</legend>
+	<p class="editableFields">
+	  
+	  <label for="[% field %]">
+	    <span class="field">
+	      [% editableValues.$index %]:
+	    </span>
+	  </label>
+
+	  
+
+
+
+	</p>
+	
+	<div class="roFields">
+	  <p style="clear:left;">
+	  <label for="[% field %]">
+	    <span class="field">[% roValues.$index %]:</span>
+	  </label>
+	</div>
+	
+      </fieldset>
+    </form>
+

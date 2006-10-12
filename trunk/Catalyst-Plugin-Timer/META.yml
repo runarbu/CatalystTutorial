@@ -1,0 +1,15 @@
+---
+name: Catalyst-Plugin-Timer
+version: 0.1
+author:
+  - 'Jules Bean, <jules@jellybean.co.uk>'
+abstract: Timer for profiling catalyst applications.
+license: perl
+requires:
+  Catalyst: 5.33
+  Time::HiRes: 0
+provides:
+  Catalyst::Plugin::Timer:
+    file: lib/Catalyst/Plugin/Timer.pm
+    version: 0.1
+generated_by: Module::Build version 0.2611

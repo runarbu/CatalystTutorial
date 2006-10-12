@@ -1,0 +1,8 @@
+<div id="navcontainer">
+	<ul class="navlist">
+		<li [% IF nav == 'server' %]id="active"[% END %]><a href="/server/list">Servers</a></li>
+		<li [% IF nav == 'search' %]id="active"[% END %]><a href="/server/search">Search</a></li>
+		<li [% IF nav == 'report' %]id="active"[% END %]><a href="/report/list">Reports</a></li>
+		[% IF c.req.user %]<li><a href="/logout">Logout</a></li>[% END %]
+	</ul>
+</div>

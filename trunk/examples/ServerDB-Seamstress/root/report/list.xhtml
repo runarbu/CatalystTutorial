@@ -1,0 +1,20 @@
+[% INCLUDE header.xhtml %]
+[% INCLUDE navbar.xhtml %]
+
+<p>Select a report.</p>
+
+<table id="matrix">
+	<tr><th>Report</th></tr>
+	[%  SET count = 0;
+	FOR report IN reports.keys;
+		 SET count = count + 1;
+		"<tr ";
+		' class="alternate"' IF count % 2;
+		' onClick="window.location.href=\'/report/' _ report _ '\'"';
+		">";%]
+			<td><a href="/report/[% report %]">[% reports.$report %]</a></td>
+		</tr>
+	[% END %]
+</table>
+
+[% INCLUDE footer.xhtml %]

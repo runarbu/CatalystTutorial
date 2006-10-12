@@ -1,0 +1,28 @@
+Revision history for Perl extension Catalyst::Plugin::SubRequest
+
+0.11  2006-04-21 14:13:00
+        - $c->req->params restored after sub_request
+0.10  2005-12-08 13:15:00  
+        - Updated test suite to work with new catalyst.
+0.09  2005-10-28 01:07:00 
+    	- localize body rather than output, which is an alias
+0.08  2005-12-10 01:34:00 
+	    - patch to handle NEXT trouble.
+0.07  2005-08-01 12:08:00 
+        - reset path.
+        - allow passing params.
+0.06  2005-06-08 20:27:00 
+        - Flush params as well
+        - allow stuff to be passed to the stash
+0.05  2005-03-19 20:27:00 
+        - Added a log message in debug mode.
+0.04  2005-03-19 20:27:00
+        - Updated forward to cat5 style
+        - Using Catalyst::Dispatch::dispatch instead of forward.
+0.03  2005-03-19 20:27:00
+        - Fixed documentation.
+0.02  2005-03-19 10:32:00
+        - Ooops, missed MANIFEST
+
+0.01  2005-03-05 22:00:00
+        - first release

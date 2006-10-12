@@ -1,0 +1,58 @@
+use Catalyst qw/ 
+	Authentication
+	Authentication::Credential::Password
+	Authentication::Store::DBI::SQL::Library 
+/;
+
+__PACKAGE__->config->{authentication}->{dbi_sql_library} = {
+	model => 'MyApp::Model::DBI::SQL::Library',
+	query => {
+		load => 'sql/authenticate.sql',
+		#load => [ <FH> ],
+		#load => [ $queries1, $queries2 ],
+		name => 'user',
+	},
+	authentication_scheme => {
+		credential_type => 'password',
+		options => {
+			password_type => 'hashed'
+			algorithm => 'SHA-1',
+			pre_salt => ...
+			post_salt => ...
+		}
+	}
+};
+
+#or use store based authentication as credential verifier
+
+__PACKAGE__->config->{authentication}->{dbi_sql_library} = {
+	model => 'MyApp::Model::DBI::SQL::Library',
+	query => {
+		load => 'sql/authenticate.sql',
+		#load => [ <FH> ],
+		#load => [ $queries1, $queries2 ],
+		name => 'user',
+	},
+	use_store_authentication => 1
+};
+
+sub login : Global {
+	my ( $self, $c ) = @_;
+	my $result = $c->login ( 
+		$c->req->param ( q{username} ),
+		$c->req->param ( q{password} )
+	);
+}
+
+#sql/authenticate.sql
+[user]
+SELECT username, password 
+FROM system_user
+WHERE username = ?
+
+#sql/authenticate.sql with use_store_authentication = 1
+[user]
+SELECT username, password 
+FROM system_user
+WHERE username = ?
+AND password = md5(?)

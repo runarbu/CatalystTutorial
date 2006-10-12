@@ -1,0 +1,10 @@
+<html>
+	<head>
+		<title>Pref-a-ton</title>
+		<link rel="stylesheet" type="text/css" href="[% uri_for("/static/html_widget.css") %]" />
+	</head>
+	<body>
+		[% c.widget_result("prefs").as_xml %]
+		<a href="[% uri_for("/") %]">back to listing</a>
+	</body>
+</html>

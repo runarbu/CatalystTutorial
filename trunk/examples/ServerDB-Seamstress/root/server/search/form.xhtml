@@ -1,0 +1,19 @@
+[% INCLUDE header.xhtml %]
+[% INCLUDE navbar.xhtml %]
+
+<form action="/server/search/results" method="post">
+<fieldset>
+	<legend>Enter a search query</legend>
+	<label for="q"><span class="field">Search:</span></label>
+	<input type="text" name="q" /><br />
+	
+	<label for="submit"><span class="field"></span></label>
+	<input type="submit" value="Search" /><br />
+</fieldset>
+</form>
+
+<script language="javascript">
+	document.forms[0].q.focus();
+</script>
+
+[% INCLUDE footer.xhtml %]

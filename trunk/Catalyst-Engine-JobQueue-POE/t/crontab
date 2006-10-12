@@ -1,0 +1,4 @@
+*       *       *       *       *       www     / arg1=foo arg2=bar
+*/5     *       *       *       *       root    /run test=1 debug=1
+*/11    *       *       *       *       www     /save
+0       *       *       *       *       root    /tester arg1=1 arg2=2
