@@ -1,0 +1,49 @@
+body {
+  background-color: #212424;
+}
+
+#wrapper {
+  position: relative;
+  background-color: #939495;
+  width: 60em;
+  margin: auto auto;
+}
+
+#header {
+  position: relative;
+  background-color: #56595C;
+  height: 7em;
+}
+
+#menu {
+  position: relative;
+  background-color: #A9AAAB;
+}
+
+#crumbtrail {
+  position: relative;
+  background-color: #CCCCCC;
+}
+
+#content {
+  position: relative;
+  background-color: #FFFFFF;
+  width: 39em;
+  margin: 0em;
+  padding: 0.2em 1em;
+  float: left;
+}
+
+#sidebar {
+  position: relative;
+  width: 17em;
+  margin: 0 0 0 41em;
+  padding: 0.2em 1em;
+}
+
+#footer {
+  position: relative;
+  background-color: #56595C;
+  height: 2em;
+  clear: both;
+}

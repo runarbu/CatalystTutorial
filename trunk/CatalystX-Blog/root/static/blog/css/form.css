@@ -1,0 +1,20 @@
+form.crud dt {
+   clear: left;
+   float: left;
+   text-align: right;
+   padding: 0 1em;
+   width: 8em;
+}
+
+form.crud dd {
+   padding-bottom: 1.5em;
+   margin-left: 10em;
+}
+
+form.crud textarea {
+   width: 23em;
+}
+
+form.crud input[type="text"] {
+   width: 23em;
+}

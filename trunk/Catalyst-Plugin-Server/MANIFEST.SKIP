@@ -1,0 +1,7 @@
+\._
+SCCS\/
+^blib
+^Makefile$
+^pm_to_blib
+\.bak$
+\.DS_Store

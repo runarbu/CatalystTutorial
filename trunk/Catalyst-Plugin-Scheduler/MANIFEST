@@ -1,0 +1,21 @@
+Build.PL
+Changes
+lib/Catalyst/Plugin/Scheduler.pm
+Makefile.PL
+MANIFEST			This list of files
+META.yml
+README
+t/01use.t
+t/02pod.t
+t/03podcoverage.t
+t/04schedule.t
+t/05auto_run.t
+t/06trigger.t
+t/07plugin.t
+t/08yaml.t
+t/09long.t
+t/lib/Catalyst/Plugin/PluginTest.pm
+t/lib/PluginTestApp.pm
+t/lib/TestApp.pm
+t/lib/TestApp/Controller/Cron.pm
+t/lib/TestApp/test.yml

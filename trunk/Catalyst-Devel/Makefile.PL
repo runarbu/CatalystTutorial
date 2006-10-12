@@ -1,0 +1,20 @@
+use inc::Module::Install 0.63;
+
+perl_version '5.8.1';
+
+name 'Catalyst-Devel';
+all_from 'lib/Catalyst/Devel.pm';
+
+requires 'perl'        => '5.8.1';
+requires 'Class::Accessor::Fast';
+requires 'Path::Class' => '0.09';
+requires 'Template'    => '2.14';
+requires 'Catalyst'    => '5.7000';
+requires 'Catalyst::Action::RenderView' => '0.04';
+requires 'Catalyst::Plugin::Static::Simple' => '0.14';
+requires 'Catalyst::Plugin::ConfigLoader';
+requires 'YAML'        => '0.55';
+requires 'Module::Install' => '0.63';
+requires 'File::Copy::Recursive';
+
+WriteAll;

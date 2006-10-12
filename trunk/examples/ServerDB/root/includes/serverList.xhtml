@@ -1,0 +1,49 @@
+<table id="matrix">
+    <tr>
+    [%
+	SET index = 0;
+	FOR field IN fields;
+        "<th>";
+        SET additional = "?order=" _ field;
+        SET additional = additional _ "&page=" _ pager.current_page
+            IF pager;
+        SET additional = additional _ "&o2=desc"
+            IF field == c.req.parameters.order and c.req.parameters.o2 != "desc";
+        FOR name IN fields;
+          IF request.query.$name;
+            SET additional =
+                additional  _ "&" _ name _ "=" _
+                c.req.parameters.$name;
+          END;
+        END;
+        '<a href="' _ additional _ '">' UNLESS searchResultCount;
+		columns.$index;
+		SET index = index + 1;
+		'</a>' UNLESS searchResultCount;
+        IF field == c.req.parameters.order;
+            IF c.req.parameters.o2 != "desc";
+                "&darr;";
+            ELSE;
+                "&uarr;";
+            END;
+        END;
+		'</th>';
+    END %]
+    </tr>
+    [%  SET count = 0;
+    FOR server IN servers;
+         SET count = count + 1;
+        "<tr ";
+        ' class="alternate"' IF count % 2;
+		' onClick="window.location.href=\'/server/view/' _ server.name _ '\'"';
+        ">";%]
+        [% FOR field IN fields;
+            '<td>';
+			'<a href="/server/view/' _ server.$field _ '">' IF field == "name";
+			server.$field;
+			'</a>' IF field == "name";
+			'</td>';
+        END; %]
+        </tr>
+    [% END %]
+</table>

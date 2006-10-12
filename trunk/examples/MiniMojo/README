@@ -1,0 +1,6 @@
+1. Create a sqlite database by running something like:
+    % sqlite sqlite.db < sqlite.sql
+2. Edit lib/MiniMojo.pm for your system.
+3. Run script/server.pl to test the application.
+
+Have fun!

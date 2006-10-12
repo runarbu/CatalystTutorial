@@ -1,0 +1,20 @@
+Revision history for Perl extension Catalyst::Model::DBIC.
+
+0.14  Tue Apr 18 2006
+	- Deprecated in favor of Catalyst::Model::DBIC::Schema
+
+0.13  Mon Dec 19 00:00:00 2005
+        - Allow external configuration to be passed to new()
+
+0.12  Wed Nov 9 00:00:00 2005
+        - Updated helper template
+
+0.11  Wed Nov 9 00:00:00 2005
+        - Made it work
+
+0.10  Tue Oct 11 00:00:00 2005
+        - There is no autoupdate() in DBIC
+	- Remove hackery to make subcomps Catalyst::Base
+
+0.09  Fri Oct 07 22:00:00 2005
+        - first release

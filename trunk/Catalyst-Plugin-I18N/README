@@ -1,0 +1,58 @@
+NAME
+    Catalyst::Plugin::I18N - I18N for Catalyst
+
+SYNOPSIS
+        use Catalyst 'I18N';
+
+        print join ' ', @{ $c->languages };
+        $c->languages( ['de'] );
+        print $c->localize('Hello Catalyst');
+
+    Use a macro if you're lazy:
+
+       [% MACRO l(text, args) BLOCK;
+           c.localize(text, args);
+       END; %]
+
+       [% l('Hello Catalyst') %]
+       [% l('Hello [_1]', 'Catalyst') %]
+       [% l('lalala[_1]lalala[_2]', ['test', 'foo']) %]
+
+DESCRIPTION
+    Supports mo/po files and Maketext classes under your applications I18N
+    namespace.
+
+       # MyApp/I18N/de.po
+       msgid "Hello Catalyst"
+       msgstr "Hallo Katalysator"
+
+       #MyApp/I18N/de.pm
+       package MyApp::I18N::de;
+       use base 'MyApp::I18N';
+       %Lexicon = ( 'Hello Catalyst' => 'Hallo Katalysator' );
+       1;
+
+  EXTENDED METHODS
+   setup
+  METHODS
+   languages
+    Contains languages.
+
+       $c->languages(['de_DE']);
+       print join '', @{ $c->language };
+
+   localize
+    Localize text.
+
+        print $c->localize( 'Welcome to Catalyst, [_1]', 'sri' );
+
+SEE ALSO
+    Catalyst.
+
+AUTHOR
+    Sebastian Riedel, "sri@cpan.org"
+
+COPYRIGHT
+    This program is free software, you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+

@@ -1,0 +1,19 @@
+NAME
+    Catalyst::Plugin::Compress::Bzip2 - Bzip2 response
+
+SYNOPSIS
+        use Catalyst qw[Compress::Bzip2];
+
+DESCRIPTION
+    Bzip2 compress response if client supports it.
+
+SEE ALSO
+    Catalyst.
+
+AUTHOR
+    Christian Hansen, "ch@ngmedia.com"
+
+LICENSE
+    This library is free software . You can redistribute it and/or modify it
+    under the same terms as perl itself.
+

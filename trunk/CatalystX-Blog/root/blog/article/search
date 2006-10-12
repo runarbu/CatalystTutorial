@@ -1,0 +1,25 @@
+﻿[% WRAPPER blog/layout
+         + blog/form %]
+
+    <fieldset>
+
+        <legend>Search</legend>
+
+        <dl>
+            <dt><label for="search">Search:</label></dt>
+            <dd><input type="text" name="search" id="search" /></dd>
+         
+            <dt><label for="summary">Results:</label></dt>
+            <dd>
+                <select id="results" name="results">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                </select>
+            </dd>            
+
+            <dd><input type="submit" value="submit" /></dd>
+        </dl>
+    </fieldset>
+
+[% END %]

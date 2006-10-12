@@ -1,0 +1,14 @@
+---
+name: Catalyst-Plugin-DefaultEnd
+version: 0.06
+author:
+  - 'Marcus Ramberg <marcus@thefeed.no>'
+abstract: Sensible default end action.
+license: perl
+requires:
+  Catalyst: 5.2
+provides:
+  Catalyst::Plugin::DefaultEnd:
+    file: lib/Catalyst/Plugin/DefaultEnd.pm
+    version: 0.06
+generated_by: Module::Build version 0.2611

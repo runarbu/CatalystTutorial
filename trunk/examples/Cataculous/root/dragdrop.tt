@@ -1,0 +1,15 @@
+[% INCLUDE header.tt %]
+
+<div class="draggable" id="drag_me">DRAG ME!</div>
+[% c.prototype.draggable_element( 'drag_me', { revert => 1 } ) %]
+<br/>
+<br/>
+<div id="drop_here">[[[ DROP HERE! ]]]</div>
+[% url = base _ 'dragdrop/dropped' %]
+[% c.prototype.drop_receiving_element( 'drop_here', {
+    hoverclass => 'hovered',
+    accept     => 'draggable',
+    url        => url
+} ) %]
+
+[% INCLUDE footer.tt %]

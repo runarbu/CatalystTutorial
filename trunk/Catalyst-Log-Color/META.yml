@@ -1,0 +1,14 @@
+---
+name: Catalyst-Log-Color
+version: 0.1
+author:
+  - 'Christian Hansen, C<ch@ngmedia.com>'
+abstract: Colored log output
+license: perl
+requires:
+  Catalyst: 5.23
+provides:
+  Catalyst::Log::Color:
+    file: lib/Catalyst/Log/Color.pm
+    version: 0.1
+generated_by: Module::Build version 0.2608

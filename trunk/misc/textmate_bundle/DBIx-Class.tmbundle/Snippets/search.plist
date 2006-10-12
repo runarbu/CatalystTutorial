@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>-&gt;search(
+	{},
+	{
+		prefetch =&gt; qw//,
+		order_by =&gt; '',
+	}
+);</string>
+	<key>name</key>
+	<string>search</string>
+	<key>scope</key>
+	<string>source.perl</string>
+	<key>tabTrigger</key>
+	<string>search</string>
+	<key>uuid</key>
+	<string>CEB24DDB-351F-49D7-89B8-C988E942F91B</string>
+</dict>
+</plist>

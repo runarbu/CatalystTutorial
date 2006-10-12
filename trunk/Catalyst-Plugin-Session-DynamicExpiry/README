@@ -1,0 +1,32 @@
+NAME
+    Catalyst::Plugin::Session::DynamicExpiry - set expiry of cookies per
+    session
+
+SYNOPSIS
+        # put Session::DynamicExpiry in your use Catalyst line
+    
+        if ($c->req->param('remember') { 
+          $c->session->{__time_to_live}=604800 # expire in one week.
+        }
+
+DESCRIPTION
+    This module allows you to expire session cookies indvidually per
+    session. If loaded, it looks for a "__cookie_time_to_live" key in the
+    session hash, and sets expiry to that many seconds into the future. Note
+    that the session cookie is set on every request, so a expiry of one week
+    will stay as long as the user visits the site at least once a week.
+
+OVERRIDDEN METHODS
+  calc_cookie_expiry
+    Overridden to implement dynamic expiry functionality.
+
+SEE ALSO
+  Catalyst::Plugin::Session - The new session framework.
+  Catalyst - The Catalyst framework itself.
+AUTHOR
+    Marcus Ramberg, "mramberg@cpan.org"
+
+LICENSE
+    This library is free software, you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+

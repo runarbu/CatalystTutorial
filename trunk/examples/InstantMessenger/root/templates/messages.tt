@@ -1,0 +1,22 @@
+[% WRAPPER wrap.tt title='messages_title' %]
+
+<a href="http://dev.catalyst.perl.org/repos/Catalyst/trunk/examples/InstantMessenger/">[% l('source_code') %]</a> | 
+<a href="/messages/history">[% l('history') %]</a>
+
+<form action="/messages/send" method="post" onsubmit="submit_form(this); return false;">
+    <input type="text" name="content" size="40">
+    <input type="submit" value="[% l('send_button') %]"><br>
+    [% l('format_rules') %]
+</form>
+
+<dl id="messages">
+[% PROCESS "message_box.tt" %]
+</dl>
+
+<script type="text/javascript" src="[% c.uri_for("/static/im.js") %]"></script>
+<script type="text/javascript">
+	update_messages();
+</script>
+
+[% END %]
+

@@ -1,0 +1,26 @@
+---
+name: Image-Simple
+version: 0.01
+author:
+  - Christian Hansen <ch@ngmedia.com>
+abstract: ~
+license: perl
+requires:
+  Image::Math::Constrain: 0
+provides:
+  Image::Simple:
+    file: lib/Image/Simple.pm
+    version: 0.01
+  Image::Simple::Adaptor:
+    file: lib/Image/Simple/Adaptor.pm
+  Image::Simple::GD:
+    file: lib/Image/Simple/GD.pm
+  Image::Simple::GraphicsMagick:
+    file: lib/Image/Simple/GraphicsMagick.pm
+  Image::Simple::ImageMagick:
+    file: lib/Image/Simple/ImageMagick.pm
+  Image::Simple::Imager:
+    file: lib/Image/Simple/Imager.pm
+  Image::Simple::Imlib2:
+    file: lib/Image/Simple/Imlib2.pm
+generated_by: Module::Build version 0.2608

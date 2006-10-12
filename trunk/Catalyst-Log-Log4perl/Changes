@@ -1,0 +1,15 @@
+Revision history for Catalyst::Log::Log4perl 
+
+0.4	Mon Jul  3 14:41:01 PDT 2006
+	- Fixed a documentation typo (thanks, ghenry!)
+
+0.3     Sat Apr  8 11:08:36 PDT 2006
+	- Added support for init_and_watch, from Stephen Steneker
+				
+0.2   	2006-02-10 00:55:10 +0100
+	- Resync with Catalyst::Log, by supporting abort(1)
+ 	- Refactor to closures
+	- added autoflush option to new() to disable abort-support
+
+0.01    Wed Sep 21 16:25:37 PDT 2005
+        - Initial Release

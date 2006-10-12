@@ -1,0 +1,23 @@
+NAME
+    Catalyst::Plugin::Static - Serve static files with Catalyst
+
+SYNOPSIS
+        use Catalyst 'Static';
+
+        $c->serve_static;
+
+DESCRIPTION
+    Serve static files from config->{root}.
+
+  METHODS
+   serve_static
+SEE ALSO
+    Catalyst.
+
+AUTHOR
+    Sebastian Riedel, "sri@cpan.org"
+
+COPYRIGHT
+    This program is free software, you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+

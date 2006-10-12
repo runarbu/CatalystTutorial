@@ -1,0 +1,11 @@
+Run script/bookdb_server.pl to test the application.
+
+This is a re-implementation of BookDB using HTML::Seamstress instead
+of Template Toolkit.
+
+You will need to install HTML::Seamstress from CPAN to use this
+version. 
+
+Questions, comments to metaperl@gmail.com or
+seamstress-discuss@lists.sf.net. 
+

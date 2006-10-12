@@ -1,0 +1,10 @@
+[% INCLUDE header.tt %]
+
+[% c.prototype.auto_complete_stylesheet %]
+Type something!<br/>
+<input autocomplete="off" id="complete_me" name="complete_me" type="text" value="" size="60"/>
+<div class="auto_complete" id="complete_me_auto_complete"></div>
+[% url = base _ 'autocomplete/suggest' %]
+[% c.prototype.auto_complete_field( 'complete_me', { url => url } ) %]
+
+[% INCLUDE footer.tt %]

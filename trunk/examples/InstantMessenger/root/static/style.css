@@ -1,0 +1,19 @@
+
+body,div,span {
+    font-family: Verdana, Arial;
+    font-size: 12px;
+    vertical-align: top;
+}
+
+.stamp {
+    font-family: Courier New;
+}
+
+.author {
+    font-weight: bold;
+}
+
+.content {
+
+}
+

@@ -1,0 +1,50 @@
+[% USE Dumper Indent = 1%]
+<table>
+    <tr>
+    [% primary = primary_key %]
+    [% FOR column = columns %]
+        [% NEXT IF column == primary %]
+        <th>[% order_by_column_link(column) %]</th>
+    [% END %]
+    [% FOR rel = rels %]
+        [% IF rel.value.type != 'belongs_to' %]
+        <th>[% labels.${rel.key} %]</th>
+        [% END %]
+    [% END %]
+    </tr>
+    [% FOR object = objects %]
+        <tr [% ' class="alternate"' IF loop.count % 2; %]>
+        [% FOR column = columns %]
+            [% NEXT IF column == primary %]
+            <td>[% object.$column %]</td>
+        [% END %]
+        [% FOR rel = rels %]
+            [% IF rel.value.type == 'many_to_many' %]
+            [% objs = object.${meth.${rel.key}} %]
+             <td>[% FOR o = objs %][% o %]<br/>[% END %]</td>
+            [% ELSIF rel.value.type == 'has_many' %]
+            [% objs = object.${rel.key} %]
+             <td>[% FOR o = objs %][% o %]<br/>[% END %]</td>
+            [% END %]
+        [% END %]
+            <td>
+                <a href="[% c.uri_for( 'view', object.$primary ) %]">
+                    View
+                </a>
+                <a href="[% c.uri_for( 'edit', object.$primary ) %]">
+                    Edit
+
+                </a>
+                <a href="[% c.uri_for( 'destroy', object.$primary ) %]">
+                    Destroy
+                </a>
+            </td>
+        </tr>
+    [% END %]
+</table>
+Pages:
+[% FOR i = [1 .. pages];
+   page_link(i); '&nbsp';
+   END %]
+<br/>
+<a href="[% c.uri_for( 'add' ) %]">Add</a>

@@ -1,0 +1,70 @@
+This file documents the revision history for Perl extension HTML::Widget.
+
+        - Fixed bug where $result->error(..., $type) would return all errors
+          but those of $type
+
+1.07 2006-04-26 10:53
+        - Added a Button element
+        - Submit and Reset values no longer default to "1"
+          (this was causing the browser to display the button label 
+          as "1" instead of "Submit" or "Reset")
+        - Added height() and width() accessors for image submit buttons
+        - Added support for <button> tags, with new content() method
+        - Added ability to customize HTML produced via 
+          H::W::Element::container_class.
+        - Can specify container_class on a per widget basis via 
+        - $w->element_container_class()
+        - Overloaded "" on Container to return as_xml
+        - All constraint counted empty strings as values
+        - AllOrNone constraint didn't treat 0 as a value
+
+1.06 2006-04-06 10:44
+        - Added Module::Pluggable::Fast preloading for PAR packaging
+          and the like
+        - Make HTML::Widget::Container->element support arrayrefs
+        - New method add_error() in HTML::Widget::Result
+        - Select elements automatically get an In constraint added,
+          corresponding to the element's option keys
+        - RadioGroup elements automatically get an In constraint added,
+          corresponding to the element's values
+        - New Number constraint
+        - New 'multiple' attribute supported on Select elements
+        - Multiple input values for a Select element is an error if the
+        	multiple attribute is not true
+        - Bug fixes:
+        - Hidden element now accepts false but defined input values
+        - Fixed bug with $result->params() not returning correct results
+          when a field had multiple values
+        - Regex constraint skipped when input param not defined
+          (stops 'uninitialized value' warning)
+
+1.05 2006-03-13 10:52   
+        - New methods get_constraints(), get_elements(), get_filters
+        - add value alias for checkbox
+        - Fixed element values set to zero or the empty string not being
+          set in the xml output
+        - Added DependOn constraint
+        - Fix textarea with description.
+        - Add a src option to Submit to make it a image submit.
+
+1.04 2005-01-30 19:26:00
+        - Fixed $query in tests, fixed fetching multiple-valued params
+        - More documentation!
+        - Lots of small bug fixes
+        - Added add_valid method
+        - Added AllOrNone constraint
+
+1.03 2006-01-17 22:00:00
+        - Fixed missing files
+
+1.02 2006-01-17 22:00:00
+        - Fixed multiple value filter
+        - Pod fixes
+        - Added new filters. HTMLEscape, HTMLStrip, UpperCase, LowerCase,
+          and Callback
+
+1.01 2006-01-11 00:00:00
+        - Fixed some typos
+
+1.0  2005-11-30 22:00:00 2005
+        - first development release

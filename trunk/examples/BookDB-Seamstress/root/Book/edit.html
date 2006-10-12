@@ -1,0 +1,9 @@
+<form action="/book/do_edit/item_id" method="post">
+      <div id=columns_view>
+        <label class="title" for="[% column %]">[% column %]</label>
+        <span class=field_column>[% item.to_field(column).as_XML %]</span>
+      </div>
+    <input type="submit" value="Edit"/>
+<form/>
+<p><a class="big" href="/book/list">&gt; LIST</a></p>
+

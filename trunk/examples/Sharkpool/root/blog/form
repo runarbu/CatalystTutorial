@@ -1,0 +1,31 @@
+[% IF c.request.parameters.submitted == c.request.action %]
+
+<div class="notice">
+
+   <h3>[% Notice %]</h3>
+
+   <ul>
+      [% FOREACH invalid IN c.form.invalid %]
+         <li>[% c.form.invalid(invalid).first %]</li>
+      [% END -%]
+
+      [% FOREACH missing IN c.form.missing %]
+         <li>[% missing %] is missing.</li>
+      [% END %]
+
+      [% FOREACH error IN c.stash.errors %]
+         <li>[% error %]</li>
+      [% END %]
+   </ul>
+
+</div>
+     
+[% END %]
+
+<form method="post" enctype="multipart/form-data" accept-charset="utf-8" class="crud [% c.request.action.split('/').join(' ') %]" id="[% c.request.action.replace('/', '-') _ '-form' %]">
+
+    <input type="hidden" name="submitted" value="[% c.request.action %]" />
+
+[% content %]
+
+</form>

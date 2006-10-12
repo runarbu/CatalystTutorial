@@ -1,0 +1,106 @@
+NAME
+    Catalyst::Log::Log4perl - Log::Log4perl logging for Catalyst
+
+SYNOPSIS
+    In MyApp.pm:
+
+        use Catalyst::Log::Log4perl;
+        MyApp->log(
+            Catalyst::Log:Log4perl->new("log4perl.conf")
+        );
+
+    And later...
+
+        $c->log->debug("This is using log4perl!");
+
+DESCRIPTION
+    This module provides a Catalyst::Log implementation that uses
+    Log::Log4perl as the underlying log mechanism. It provides all the
+    methods listed in Catalyst::Log, with the exception of:
+
+        levels
+        enable
+        disable
+
+    These methods simply return 0 and do nothing, as similar functionality
+    is already provided by Log::Log4perl.
+
+    These methods will all instantiate a logger with the component set to
+    the package who called it. For example, if you were in the
+    MyApp::C::Main package, the following:
+
+        package MyApp::C::Main;
+
+        sub default : Private {
+            my ( $self, $c ) = @_;
+            my $logger = $c->log;
+            $logger->debug("Woot!");
+        }
+
+    Would send a message to the Myapp.C.Main Log::Log4perl component.
+
+    See Log::Log4perl for more information on how to configure different
+    logging mechanisms based on the component.
+
+METHODS
+    new($config)
+        This builds a new Catalyst::Log::Log4perl object. If you provide an
+        argument to new(), it will be passed directly to
+        Log::Log4perl::init.
+
+        Without any arguments, it will initialize a root logger with a singe
+        appender, Log::Log4perl::Appender::Screen, configured to have an
+        identical layout to the default Catalyst::Log object.
+
+    debug($message)
+        Passes it's arguments to $logger->debug.
+
+    info($message)
+        Passes it's arguments to $logger->info.
+
+    warn($message)
+        Passes it's arguments to $logger->warn.
+
+    error($message)
+        Passes it's arguments to $logger->error.
+
+    fatal($message)
+        Passes it's arguments to $logger->fatal.
+
+    is_debug()
+        Calls $logger->is_debug.
+
+    is_info()
+        Calls $logger->is_info.
+
+    is_warn()
+        Calls $logger->is_warn.
+
+    is_error()
+        Calls $logger->is_error.
+
+    is_fatal()
+        Calls $logger->is_fatal.
+
+    levels()
+        This method does nothing but return "0". You should use
+        Log::Log4perl's built in mechanisms for setting up log levels.
+
+    enable()
+        This method does nothing but return "0". You should use
+        Log::Log4perl's built in mechanisms for enabling log levels.
+
+    disable()
+        This method does nothing but return "0". You should use
+        Log::Log4perl's built in mechanisms for disabling log levels.
+
+SEE ALSO
+        Log::Log4perl, Catalyst::Log, Catalyst.
+
+AUTHOR
+        Adam Jacob, "adam@stalecoffee.org"
+
+LICENSE
+        This library is free software. You can redistribute it and/or modify
+        it under the same terms as perl itself.
+

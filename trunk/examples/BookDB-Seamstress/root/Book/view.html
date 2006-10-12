@@ -1,0 +1,29 @@
+<div>
+
+  <div id=book_props_div>
+    <span id=book_props>
+      <b class="title">[% column %]</b><br/>
+      <span id=val>[% item.$column %]</span><br/><br/>
+    </span>
+  </div>
+
+
+  <span id=book_status>
+    <span id=checked_out>
+      Checked out to <a id=borrower href="">borrower_name</a> 
+      (<span id=item_borrowed>[%item.borrowed%]</span>)<br/>
+      <a id=do_return href="ase _ "book/do_return/" _ item.id %]">Return it</a>
+    </span>
+    <form id=not_checked_out action="[% c.uri_for('do_checkout', item.id) %]"
+      method="post">
+      <span id=select>
+      [% item.to_field('borrower').as_XML %] 
+      </span>
+      (<a href="/borrower/add">add user<a/>)<br/>
+	  <input type="submit" value="Check out to"/>
+    </form>
+  </span>
+
+  <p><a class="big" href="/book/list">&gt; LIST</a></p>
+
+</div>

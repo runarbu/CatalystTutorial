@@ -1,0 +1,22 @@
+[% INCLUDE header.xhtml %]
+[% INCLUDE navbar.xhtml %]
+
+<form action="/login" method="post">
+<fieldset>
+	<legend>Please login to access this page.</legend>
+	<label for="username"><span class="field">Username:</span></label>
+	<input type="text" name="username" /><br />
+	
+	<label for="password"><span class="field">Password:</span></label>
+	<input type="password" name="password" /><br />
+	
+	<label for="submit"><span class="field"></span></label>
+	<input type="submit" value="Login" /><br />
+</fieldset>
+</form>
+
+<script language="javascript">
+	document.forms[0].username.focus();
+</script>
+
+[% INCLUDE footer.xhtml %]

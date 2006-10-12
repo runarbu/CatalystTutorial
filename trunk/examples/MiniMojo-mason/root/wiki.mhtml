@@ -1,0 +1,34 @@
+<%args>
+# page here is passed in from Catalyst
+$page	=> undef
+</%args>
+<%init>
+# Catalyst gives us $base and $c variables
+my $url = $base . "page/edit/" . $page->title;
+</%init>
+<html>
+<head>
+    <title>MiniMojo</title>
+
+    <% $c->prototype->define_javascript_functions() %>
+</head>
+
+<body Onload="new Ajax.Updater( 'view',  '<% $url %>' )">
+    <h1><% $page->title %></h1>
+    
+    <a href="<% $base %>">Back to the main page.</a>
+    
+    <div id="view">
+        <!-- Ajax takes care of showing our wiki page content here -->
+    </div>
+    
+    <textarea id="editor" rows="24" cols="80"><% $page->body %></textarea>
+    <% $c->prototype->observe_field( 'editor', {
+        url     => $url,
+        with    => "'body='+escape(value)",
+        update  => 'view' 
+    }) %>
+
+</body>
+
+</html>

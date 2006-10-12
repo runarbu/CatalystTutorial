@@ -1,0 +1,61 @@
+Revision history for Perl extension Catalyst::Model::LDAP.
+
+0.15
+        - Accessors for entries (Marcus Ramberg)
+        - Pager support (Marcus Ramberg)
+        - Documentation updates
+
+0.14  Mon Mar  6 17:50:19 EST 2006
+        - Don't try to bind on an empty DN
+
+0.13  Mon Mar  6 13:38:49 EST 2006
+        - Make live tests optional
+
+0.12  Fri Mar  3 23:59:52 EST 2006
+        - Minor documentation cleanup
+
+0.11  Mon Feb 27 22:26:30 EST 2006
+        - Helper documentation cleanup (Gavin Henry)
+        - Add TLS Helper option (Gavin Henry)
+
+0.10  Tue Feb 15 10:32:26 EST 2006
+        - Add TLS support (Adam Jacob)
+
+0.09  Wed Feb  1 18:51:02 EST 2006
+        - Documentation cleanup
+
+0.08  Wed Dec 28 02:59:35 EST 2005
+        - Require Catalyst 5.5 (for Catalyst::Model)
+        - Remove Catalyst::Model::LDAP::Cached; caching should be done
+          at the application level
+        - Make API for searching more flexible
+        - Support other Net::LDAP methods via AUTOLOAD
+          (idea stolen from Catalyst::Model::NetBlogger)
+
+0.07  Sun Oct 30 20:19:12 EST 2005
+        - Update documentation with examples
+        - Use Carp::croak instead of die on connection errors
+
+0.06  Wed Oct 26 00:57:46 EDT 2005
+        - Refactor Catalyst::Model::LDAP
+        - Call config explicitly in constructor
+        - Move caching code to Catalyst::Model::LDAP::Cached
+
+0.05  Fri Oct  7 23:51:50 EDT 2005
+        - Remove accidental inheritance from Net::LDAP
+
+0.04  Tue Sep 13 17:13:00 EDT 2005
+        - Don't die on LDAP search errors
+        - Provide access to LDAP code value and error message
+
+0.03  Mon Sep 12 13:26:35 EDT 2005
+        - Fix LDAP binds with password
+          (patch from Jason Jenkins)
+        - Allow LDAP binds with e.g. SASL authentiction
+
+0.02  Tue Sep  6 18:06:43 EDT 2005
+        - Add (optional) caching of LDAP search results
+          (requested by Christopher Heschong)
+
+0.01  Tue Aug  9 17:53:00 EDT 2005
+        - Initial revision

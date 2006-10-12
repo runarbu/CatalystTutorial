@@ -1,0 +1,35 @@
+NAME
+    Catalyst::Plugin::Cache::FileCache - File cache
+
+SYNOPSIS
+        use Catalyst qw[Cache::FileCache];
+
+        MyApp->config->{cache}->{storage} = '/tmp';
+        MyApp->config->{cache}->{expires} = 3600;
+
+        my $data;
+
+        unless ( $data = $c->cache->get('data') ) {
+            $data = MyApp::Model::Data->retrieve('data');
+            $c->cache->set( 'data', $data );
+        }
+
+        $c->response->body($data);
+
+DESCRIPTION
+    Extends base class with a file cache.
+
+METHODS
+    cache
+        Returns an instance of "Cache::FileCache"
+
+SEE ALSO
+    Cache::FileCache, Catalyst.
+
+AUTHOR
+    Christian Hansen, "ch@ngmedia.com" Sebastian Riedel "sri@oook.de"
+
+LICENSE
+    This library is free software . You can redistribute it and/or modify it
+    under the same terms as perl itself.
+

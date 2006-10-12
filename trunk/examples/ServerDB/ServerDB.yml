@@ -1,0 +1,12 @@
+--- #YAML:1.0
+authentication:
+  password_field: password
+  password_hash: sha
+  role_class: ServerDB::M::CDBI::Role
+  user_class: ServerDB::M::CDBI::User
+  user_field: username
+  user_role_class: ServerDB::M::CDBI::UserRole
+  user_role_user_field: user
+dsn: dbi:SQLite2:__HOME__/ServerDB.db
+name: ServerDB
+plucene_dir: /plucene

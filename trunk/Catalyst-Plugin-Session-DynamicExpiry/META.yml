@@ -1,0 +1,15 @@
+---
+name: Catalyst-Plugin-Session-DynamicExpiry
+version: 0.01
+author:
+  - 'Marcus Ramberg, C<mramberg@cpan.org>'
+abstract: set expiry of cookies per session
+license: perl
+requires:
+  Catalyst::Plugin::Session: 0.01
+  Test::MockObject: 1.01
+provides:
+  Catalyst::Plugin::Session::DynamicExpiry:
+    file: lib/Catalyst/Plugin/Session/DynamicExpiry.pm
+    version: 0.01
+generated_by: Module::Build version 0.2607

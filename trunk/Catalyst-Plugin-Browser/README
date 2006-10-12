@@ -1,0 +1,28 @@
+NAME
+    Catalyst::Plugin::Browser - Browser Detection
+
+SYNOPSIS
+        use Catalyst qw[Browser];
+
+        if ( $c->request->browser->windows && $c->request->browser->ie ) {
+            # do something
+        }
+
+DESCRIPTION
+    Extends "Catalyst::Request" with browser detection.
+
+METHODS
+    browser
+        Returns an instance of HTTP::BrowserDetect, which lets you get
+        information of the client's user agent.
+
+SEE ALSO
+    HTTP::BrowserDetect, Catalyst::Request.
+
+AUTHOR
+    Christian Hansen, "ch@ngmedia.com"
+
+LICENSE
+    This library is free software . You can redistribute it and/or modify it
+    under the same terms as perl itself.
+

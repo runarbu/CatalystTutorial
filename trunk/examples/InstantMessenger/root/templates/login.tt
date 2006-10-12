@@ -1,0 +1,12 @@
+
+[% WRAPPER wrap.tt title='login_title' %]
+
+[% l('login_content',c.version) %]
+
+<form method="post" action="/login">
+    <input type="text" name="author" value="[% c.session.author %]"> 
+    <input type="submit" value="[% l('login_button') %]">
+</form>
+
+[% END %]
+

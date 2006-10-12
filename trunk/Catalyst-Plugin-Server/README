@@ -1,0 +1,63 @@
+NAME
+       Catalyst::Plugin::Server::XMLRPC -- Catalyst XMLRPC Server Plugin
+
+SYNOPSIS
+    package MyApp
+    use Catalyst qw/Server Server::XMLRPC/;
+    use base 'Catalyst';
+
+    package MyApp::Controller::Example;
+    use base 'Catalyst::Controller';
+
+    sub echo : XMLRPC {                     # available as: example.echo
+        my ( $self, $c, @args ) = @_;
+        $c->stash->{xmlrpc} = join ', ', @args;
+    }
+
+    sub ping : XMLRPCPath('/ping') {        # available as: ping
+        my ( $self, $c ) = @_;
+        $c->stash->{xmlrpc} = 'Pong';
+    }
+
+    sub world : XMLRPCRegex(/hello/) {      # available as: *hello*
+        my ($self, $c) = @_;
+        $c->stash->{xmlrpc} = 'World';
+    }
+
+    sub echo : XMLRPCLocal {                # available as: example.echo
+        my ( $self, $c, @args ) = @_;
+        $c->stash->{xmlrpc} = join ', ', @args;
+    }
+
+    sub ping : XMLRPCGlobal {               # available as: ping
+        my ( $self, $c ) = @_;
+        $c->stash->{xmlrpc} = 'Pong';
+    }
+
+DESCRIPTION
+       XMLRPC Plugin for Catalyst which we tried to make compatible with the
+       way Catalyst works with URLS. Main features are:
+
+       * Split XMLRPC methodNames by STRING to find out Controller.
+       * Single entrypoint for XMLRPC calls, like http://host.tld/rpc
+       * DispatchTypes (attributes) which work much the same as Catalyst attrs
+       * XMLRPC Parameter handling transparent to Catalyst parameter handling
+
+SEE ALSO
+       Catalyst::Plugin::Server::XMLRPC::Tutorial, Catalyst::Manual, Cata-
+       lyst::Request, Catalyst::Response,  RPC::XML, "bin/rpc_client.pl"
+
+ACKNOWLEDGEMENTS
+       For the original implementation of this module:
+       Sebastian Riedel, "sri@oook.de" 
+       Marcus Ramberg, "mramberg@cpan.org"
+       Christian Hansen Yoshinori Sano
+
+AUTHORS
+       Jos Boumans (kane@cpan.org) 
+       Michiel Ootjers (michiel@cpan.org)
+
+LICENSE
+       This library is free software, you can redistribute it and/or modify it
+       under the same terms as Perl itself.
+

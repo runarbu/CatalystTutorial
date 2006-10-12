@@ -1,0 +1,14 @@
+[% PROCESS scaffold/header.tt %]
+
+<p>[%message%]</p>
+<form action="[% c.uri_for('do_edit', item.id) %]"
+    method="post">
+    [% FOR column = item.columns('view') %]
+        <label class="title" for="[% column %]">[% column %]</label>
+        [% item.to_field(column).as_XML %]<p/>
+    [% END %]
+    <input type="submit" value="Edit"/>
+<form/>
+<p><a class="big" href="[% c.uri_for('list') %]">&gt; LIST</a></p>
+
+[% PROCESS scaffold/footer.tt %]

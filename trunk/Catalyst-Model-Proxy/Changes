@@ -1,0 +1,4 @@
+Revision history for Perl extension Catalyst::Model::Proxy
+
+0.02 Tue 30 May 21:00:00 Removed AUTOLOAD, added caching and explicit subroutine definitions
+0.01 Thu 25 May 22:00:00 Released

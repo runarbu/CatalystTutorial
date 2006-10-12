@@ -1,0 +1,28 @@
+[% WRAPPER wrap.tt title='history_title' %]
+
+[% IF pager.previous_page %]
+    <a href="history?page=[% pager.previous_page %]">[% l('previous') %]</a>
+[% ELSE %]
+    [% l('previous') %]
+[% END %] | 
+
+[% SET page = pager.first_page %]
+[% WHILE page <= pager.last_page %]
+    <a href="history?page=[% page %]" [% IF page==pager.current_page %]style="font-weight:bold;"[% END %]>[% page %]</a> 
+    [% SET page = page + 1 %]
+[% END %]
+
+ | [% IF pager.next_page %]
+    <a href="history?page=[% pager.next_page %]">[% l('next') %]</a>
+[% ELSE %]
+    [% l('next') %]
+[% END %]
+
+<p>
+
+<div id="messages">
+[% PROCESS "message_box.tt" %]
+</div>
+
+[% END %]
+

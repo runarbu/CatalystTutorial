@@ -1,0 +1,86 @@
+NAME
+    Catalyst::Plugin::Email - Send emails with Catalyst
+
+SYNOPSIS
+        use Catalyst 'Email';
+
+        __PACKAGE__->config->{email} = [qw/SMTP smtp.oook.de/];
+
+        $c->email(
+            header => [
+                From    => 'sri@oook.de',
+                To      => 'sri@cpan.org',
+                Subject => 'Hello!'
+            ],
+            body => 'Hello sri'
+        );
+
+DESCRIPTION
+    Send emails with Catalyst and Email::Send and Email::MIME::Creator.
+
+USING WITH A VIEW
+    A common practice is to handle emails using the same template language
+    used for HTML pages. This can be accomplished by pairing this plugin
+    with Catalyst::Plugin::SubRequest.
+
+    Here is a short example of rendering an email from a Template Toolkit
+    source file. The call to $c->subreq makes an internal call to the
+    render_email method just like an external call from a browser. The
+    request will pass through the end method to be processed by your View
+    class.
+
+        sub send_email : Local {
+            my ( $self, $c ) = @_;  
+
+            $c->email(
+                header => [
+                    To      => 'me@localhost',
+                    Subject => 'A TT Email',
+                ],
+                body => $c->subreq( '/render_email' ),
+            );
+            # redirect or display a message
+        }
+    
+        sub render_email : Local {
+            my ( $self, $c ) = @_;
+        
+            $c->stash(
+                names    => [ qw/andyg sri mst/ ],
+                template => 'email.tt',
+            );
+        }
+    
+    And the template:
+
+        [%- FOREACH name IN names -%]
+        Hi, [% name %]!
+        [%- END -%]
+    
+        --
+        Regards,
+        Us
+
+    Output:
+
+        Hi, andyg!
+        Hi, sri!
+        Hi, mst!
+    
+        --
+        Regards,
+        Us
+
+METHODS
+  email
+SEE ALSO
+    Catalyst, Catalyst::Plugin::SubRequest, Email::Send,
+    Email::MIME::Creator
+
+AUTHOR
+    Sebastian Riedel, "sri@cpan.org"
+
+COPYRIGHT
+    This program is free software, you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+

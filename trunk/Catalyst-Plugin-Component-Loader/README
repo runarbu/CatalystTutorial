@@ -1,0 +1,26 @@
+NAME
+    Catalyst::Plugin::Component::Loader - Catalyst Component Loader
+
+SYNOPSIS
+        use Catalyst qw[Component::Loader];
+
+DESCRIPTION
+    A more sane loader
+
+OVERLOADED METHODS
+    setup_components
+
+METHODS
+    instantiate_components
+    retrieve_components
+
+SEE ALSO
+    Catalyst, Catalyst::Engine
+
+AUTHOR
+    Christian Hansen, "ch@ngmedia.com"
+
+LICENSE
+    This library is free software . You can redistribute it and/or modify it
+    under the same terms as perl itself.
+

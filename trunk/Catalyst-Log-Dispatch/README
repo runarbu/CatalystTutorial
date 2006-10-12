@@ -1,0 +1,25 @@
+NAME
+    Catalyst::Log::Dispatch - Log::Dispatch
+
+SYNOPSIS
+        use Catalyst::Log::Dispatch;
+
+        my $dispatcher = Catalyst::Log::Dispatch->new;
+
+        $dispatcher->add( Log::Dispatch::File->new( name      => 'file1',
+                                                    min_level => 'debug',
+                                                    filename  => 'logfile' ) );
+
+        MyApp->log($dispatcher);
+
+DESCRIPTION
+SEE ALSO
+    Log::Dispatch, Catalyst::Log::Dispatch::Config, Catalyst::Log, Catalyst.
+
+AUTHOR
+    Christian Hansen, "ch@ngmedia.com"
+
+LICENSE
+    This library is free software. You can redistribute it and/or modify it
+    under the same terms as perl itself.
+

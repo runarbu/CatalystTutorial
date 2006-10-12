@@ -1,0 +1,45 @@
+body {
+  font-family: verdana, sans-serif;
+  font-size: small;  
+  line-height: 1.6em;
+}
+
+a {
+  color: rgb(0,0,0);
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(0,0,0);
+}
+
+a:hover {
+  color: rgb(0,0,0);
+}
+
+h1, h2, h3 {
+  font-family: "trebuchet ms", sans-serif;
+}
+
+h1 {
+  font-size: 1.5em;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+p {
+  margin-bottom: 2em;
+}
+
+.hidden {
+  display: none;
+}

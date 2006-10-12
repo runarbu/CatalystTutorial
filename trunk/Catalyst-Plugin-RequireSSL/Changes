@@ -1,0 +1,24 @@
+Revision history for Perl extension Catalyst::Plugin::RequireSSL
+
+0.06
+        - Fixed to support additional HTTP engines.
+
+0.05    2005-09-15 12:15:00
+        - Updated skipped tests to run if Catalyst >= 5.5.
+
+0.04    2005-09-14 13:30:00
+        - Fixed bug in redirect code that ignored duplicate key names.
+        - Strip all output content when doing a redirect from HTTP -> HTTPS
+          to avoid sending secure data over HTTP.
+        - Added test suite.
+
+0.03    2005-09-05 22:00:00
+        - Proper handling for static files in SSL mode when using
+          Static::Simple.
+        - Code cleanup per Best Practices.
+
+0.02    2005-06-23 20:40:00
+        - fixed README file
+
+0.01    2005-06-08 23:45:00
+        - initial release

@@ -1,0 +1,7 @@
+0.02    2005-12-29 10:43:00
+        - Workaround Storable/Cache::FastMmap limitation with non reference
+          data
+
+0.01
+        - Initial release.
+

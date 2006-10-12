@@ -1,0 +1,15 @@
+[% INCLUDE header.xhtml %]
+[% INCLUDE navbar.xhtml %]
+
+[% INCLUDE includes/pager.xhtml %]
+
+[% UNLESS servers %]
+	<p>No search results found.</p>
+[% ELSE %]
+	<p>[% searchResultCount %] results found:</p>
+	[% INCLUDE includes/serverList.xhtml %]
+[% END %]
+
+[% INCLUDE includes/pager.xhtml %]
+
+[% INCLUDE footer.xhtml %]

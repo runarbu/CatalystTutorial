@@ -1,0 +1,45 @@
+use strict;
+use warnings;
+use ExtUtils::MakeMaker;
+
+WriteMakefile(
+    NAME          => 'Catalyst::Model::LDAP',
+    AUTHOR        => 'Daniel Westermann-Clark <danieltwc@cpan.org>',
+    VERSION_FROM  => 'lib/Catalyst/Model/LDAP.pm',
+    ABSTRACT_FROM => 'lib/Catalyst/Model/LDAP.pm',
+    PREREQ_PM     => {
+        'Carp'                     => 0,
+        'Catalyst'                 => '5.5',
+        'Class::Accessor::Fast'    => 0,
+        'Data::Page'               => 0,
+        'FindBin'                  => 0,
+        'NEXT'                     => 0,
+        'Net::LDAP'                => 0,
+        'Net::LDAP::Constant'      => 0,
+        'Net::LDAP::Control::Sort' => 0,
+        'Net::LDAP::Control::VLV'  => 0,
+        'Net::LDAP::Entry'         => 0,
+        'Net::LDAP::Search'        => 0,
+        'Scalar::Util'             => 0,
+        'Test::More'               => 0,
+    },
+    dist          => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
+    clean         => { FILES => 'Catalyst-Model-LDAP-* MANIFEST META.yml README' },
+);
+
+
+package MY;
+
+sub postamble {
+    return <<"...";
+cover::
+	cover -delete
+	HARNESS_PERL_SWITCHES=-MDevel::Cover \$(MAKE) test
+	cover
+
+readme::
+	perldoc -o text -d README \$(NAME)
+...
+}
+
+1;

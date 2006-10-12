@@ -1,0 +1,16 @@
+---
+name: Catalyst-Log-Dispatch-Config
+version: 0.1
+author:
+  - 'Christian Hansen, C<ch@ngmedia.com>'
+abstract: Log::Dispatch::Config
+license: perl
+requires:
+  Catalyst: 5.23
+  Catalyst::Log::Dispatch: 0
+  Log::Dispatch::Config: 0
+provides:
+  Catalyst::Log::Dispatch::Config:
+    file: lib/Catalyst/Log/Dispatch/Config.pm
+    version: 0.1
+generated_by: Module::Build version 0.2608

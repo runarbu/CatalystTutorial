@@ -1,0 +1,25 @@
+<table id="books" cellspacing="0" summary="The list of all books">
+  <caption>Table: List of Books</caption>
+  <tr id=title_row>
+    <th id=title>[% object.$column %]</th>
+    <th id=author>[% object.$column %]</th>
+    <th id=publisher>[% object.$column %]</th>
+    <th id=year>[% object.$column %]</th>
+    <th/>
+  </tr>
+  <tr class="alt">
+    <td id=title>[% object.$column %]</td>
+    <td id=author>[% object.$column %]</td>
+    <td id=publisher>[% object.$column %]</td>
+    <td id=year>[% object.$column %]</td>
+    <td>
+      <a href="[% c.uri_for('view', object.id) %]">View</a>
+      <a href="[% c.uri_for('edit', object.id) %]">Edit</a>
+      <a href="[% c.uri_for('destroy', object.id) %]">Destroy</a>
+    </td>
+  </tr>
+</table>
+
+    <p><a class="big" href="/book/add">+ ADD</a></p>
+
+

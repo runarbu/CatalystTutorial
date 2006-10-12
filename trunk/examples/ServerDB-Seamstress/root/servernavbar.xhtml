@@ -1,0 +1,7 @@
+<div id="servernavcontainer">
+	<ul class="navlist">
+		<li [% IF servernav == 'view' %]id="active"[% END %]><a href="/server/view/[% server.name %]">[% server.name %] Details</a></li>
+		<li [% IF servernav == 'apps' %]id="active"[% END %]><a href="/server/apps/[% server.name %]">Applications</a>[% IF appCount %]([% appCount %])[% END %]</li>
+		<li [% IF servernav == 'history' %]id="active"[% END %]><a href="/server/history/[% server.name %]">Support History</a></li>
+	</ul>
+</div>

@@ -1,0 +1,35 @@
+[% PROCESS scaffold/header.tt %]
+[% USE table_class = Class('BookDB::M::BookDB::Book') %]
+[% c.prototype.auto_complete_stylesheet %]
+[% c.prototype.define_javascript_functions %] 
+
+<div id="search">
+  <form action="[% c.uri_for('do_add_from_isbn') %]" method="post">
+  <p style="margin:0; padding: 0;">Find a book on Amazon by ISBN &#187;</p>
+  <div class="input">
+    <input type="text" name="isbn" value="" class="input" style="width: 180px;" />
+  </div>
+  <div class="submit">
+    <input type="submit" value="Find &#187;" class="submit"  style="width: 52px;" />
+  </div>
+  </form>
+</div>
+<p> or fill in manually:</p>
+<form action="[% c.uri_for('do_add') %]" method="post">
+    [% FOR column = table_class.columns('view') %]
+        <label class="title" for="[% column %]">[% column %]</label>
+        [% table_class.to_field(column).as_XML %]<p/>
+	[% url = base _ /book/autocomplete_title;
+	   IF column == 'title' ; 
+	   c.prototype.auto_complete_field('title', {
+		url => url,
+		}) %]
+	<div id="title_auto_complete">
+	  [% END %]
+	</div>
+    [% END %]
+    <input type="submit" value="Add"/>
+<form/>
+<p><a class="big" href="[% c.uri_for('list') %]">&gt; LIST</a></p>
+
+[% PROCESS scaffold/footer.tt %]

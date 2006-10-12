@@ -1,0 +1,40 @@
+    <form action="/server/do_edit/[% server.name %]" method="post">
+      <fieldset>
+	<legend>
+	  <a href="/server/list">Server List</a>
+	  server.name
+	</legend>
+	<span class="editableFields">
+	  
+	  <p class="not_admin" style="clear:left;"></p>
+	  <label for="[% field %]">
+	    <span class="field">
+	      [% editableValues.$index %]:
+	    </span>
+	  </label>
+	  <span class="if_admin">
+	    <div class="is_admin">
+	      <input 
+		type="text" 
+		name="[% field %]" 
+		value="[% server.$field %]" 
+		size="30" />
+	      <br />
+	    </div>
+	    <div class="not_admin">
+	      [% server.$field %]
+	    </div>
+	  </span>
+
+	</span>
+	
+	<span class="is_admin">
+	  <label for="submit"><span class="field"></span></label>
+	  <input type="submit" value="Save Changes" /><br />
+	</span>
+	
+
+	
+      </fieldset>
+    </form>
+

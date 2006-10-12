@@ -1,0 +1,32 @@
+Revision history for Perl extension Catalyst::Plugin::Session
+
+0.06
+        - Set sessionid only if unset, allowing State plugins to stack (gphat)
+
+0.05     
+        - Un-workaround the Cache::FastMmap (actually Storable) limitation -
+          it's not C::P::Session's business.
+        - add $c->session_expires
+        - refactor guts
+        - improve semantics of session deletion (now deletes flash data too)
+        - improve lazy-load-ness of session data in the light of expiration
+
+0.04    2005-12-28 09:42:00
+        - Work around a limitation in Cache::FastMmap - must store only
+          references, while expiration was an NV.
+
+0.03    2005-12-26 10:22:00
+        - Lazify loading of session data for better performance and less chance
+          of race conditions
+        - support for $c->flash a la Ruby on Rails
+        - Fixed bug in sessionid algorithm detection.
+        - Separate __expires from the session data - we write it every time
+        - Lazify saving of session data for better performance and less chance
+          of race conditions
+
+0.02    2005-11-23 09:40:00
+        - Doc fixes
+        - No more -Engine=Test
+
+0.01    2005-11-14 12:41:00
+        - Initial release.

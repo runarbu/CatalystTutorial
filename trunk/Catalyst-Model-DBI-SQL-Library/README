@@ -1,0 +1,70 @@
+Catalyst::Model::DBI::SUQsLe:r:LCiobnrtarriyb(u3t)ed PerClatDaolcyusmte:n:tMaotdieoln::DBI::SQL::Library(3)
+
+
+
+NNAAMMEE
+       Catalyst::Model::DBI::SQL::Library - SQL::Library DBI Model Class
+
+SSYYNNOOPPSSIISS
+               # use the helper
+               create model DBI::SQL::Library DBI::SQL::Library dsn user password
+
+               # lib/MyApp/Model/DBI/SQL/Library.pm
+               package MyApp::Model::DBI::SQL::Library;
+
+               use base 'Catalyst::Model::DBI::SQL::Library';
+
+               __PACKAGE__->config(
+                       dsn           => 'dbi:Pg:dbname=myapp',
+                       password      => '',
+                       user          => 'postgres',
+                       options       => { AutoCommit => 1 },
+                       sqldir        => 'root/sql' #optional, will default to $c->path_to ( 'root/sql' )
+               );
+
+               1;
+
+               my $model = $c->model( 'DBI::SQL::Library' );
+               my $sql = $model->load ( 'something.sql' ) ;
+
+               #or my $sql = $model->load ( [ <FH> ] );
+               #or my $sql = $model->load ( [ $sql_query1, $sql_query2 ] ) )
+
+               my $query = $sql->retr ( 'some_sql_query' );
+
+               #or my $query = $model->sql->retr ( 'some_sql_query );
+
+               $model->dbh->do ( $query );
+
+               #do something else with $sql ...
+
+DDEESSCCRRIIPPTTIIOONN
+       This is the "SQL::Library" model class. It provides access to
+       "SQL::Library" via sql accessor. Please refer to "SQL::Library" for
+       more information.
+
+MMEETTHHOODDSS
+       new Initializes database connection
+
+       $self->load
+           Initializes "SQL::Library" instance
+
+       $self->dbh
+           Returns the current database handle.
+
+       $self->sql
+           Returns the current "SQL::Library" instance
+
+SSEEEE AALLSSOO
+       Catalyst, DBI
+
+AAUUTTHHOORR
+       Alex Pavlovic, "alex.pavlovic@taskforce-1.com"
+
+CCOOPPYYRRIIGGHHTT
+       This program is free software, you can redistribute it and/or modify it
+       under the same terms as Perl itself.
+
+
+
+perl v5.8.8                       2006-05-C3a0talyst::Model::DBI::SQL::Library(3)

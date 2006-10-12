@@ -1,0 +1,89 @@
+# MASON COMPILER ID: 2097!28161
+package HTML::Mason::Commands;
+use strict;
+use vars qw($m $name $c $base);
+HTML::Mason::Component::FileBased->new(
+'code' => sub {
+HTML::Mason::Exception::Params->throw
+    ( error =>
+      "Odd number of parameters passed to component expecting name/value pairs"
+    ) if @_ % 2;
+my ( $page );
+{
+    my %pos;
+    for ( my $x = 0; $x < @_; $x += 2 )
+    {
+        $pos{ $_[$x] } = $x + 1;
+    }
+#line 3 /Users/jason/sandbox/perl/catalyst/MiniMojo/root/wiki.mhtml
+     $page = exists $pos{'page'} ? $_[ $pos{'page'} ] :  undef;
+}
+$m->debug_hook( $m->current_comp->path ) if ( %DB:: );
+
+#line 5 /Users/jason/sandbox/perl/catalyst/MiniMojo/root/wiki.mhtml
+
+# Catalyst gives us $base and $c variables
+my $url = $base . "page/edit/" . $page->title;
+#line 9 /Users/jason/sandbox/perl/catalyst/MiniMojo/root/wiki.mhtml
+$m->print( '<html>
+<head>
+    <title>MiniMojo</title>
+
+    ' );
+#line 13 /Users/jason/sandbox/perl/catalyst/MiniMojo/root/wiki.mhtml
+$m->print(  $c->prototype->define_javascript_functions()  );
+#line 13 /Users/jason/sandbox/perl/catalyst/MiniMojo/root/wiki.mhtml
+$m->print( '
+</head>
+
+<body Onload="new Ajax.Updater( \'view\',  \'' );
+#line 16 /Users/jason/sandbox/perl/catalyst/MiniMojo/root/wiki.mhtml
+$m->print(  $url  );
+#line 16 /Users/jason/sandbox/perl/catalyst/MiniMojo/root/wiki.mhtml
+$m->print( '\' )">
+    <h1>' );
+#line 17 /Users/jason/sandbox/perl/catalyst/MiniMojo/root/wiki.mhtml
+$m->print(  $page->title  );
+#line 17 /Users/jason/sandbox/perl/catalyst/MiniMojo/root/wiki.mhtml
+$m->print( '</h1>
+    
+    <a href="' );
+#line 19 /Users/jason/sandbox/perl/catalyst/MiniMojo/root/wiki.mhtml
+$m->print(  $base  );
+#line 19 /Users/jason/sandbox/perl/catalyst/MiniMojo/root/wiki.mhtml
+$m->print( '">Back to the main page.</a>
+    
+    <div id="view">
+        <!-- Ajax takes care of showing our wiki page content here -->
+    </div>
+    
+    <textarea id="editor" rows="24" cols="80">' );
+#line 25 /Users/jason/sandbox/perl/catalyst/MiniMojo/root/wiki.mhtml
+$m->print(  $page->body  );
+#line 25 /Users/jason/sandbox/perl/catalyst/MiniMojo/root/wiki.mhtml
+$m->print( '</textarea>
+    ' );
+#line 30 /Users/jason/sandbox/perl/catalyst/MiniMojo/root/wiki.mhtml
+$m->print(  $c->prototype->observe_field( 'editor', {
+        url     => $url,
+        with    => "'body='+value",
+        update  => 'view' 
+    })  );
+#line 30 /Users/jason/sandbox/perl/catalyst/MiniMojo/root/wiki.mhtml
+$m->print( '
+
+</body>
+
+</html>
+' );
+return undef;
+},
+'compiler_id' => '2097!28161',
+'declared_args' => {
+  '$page' => { default => ' undef' }
+},
+'load_time' => 1119194388,
+'object_size' => 2514,
+
+)
+;

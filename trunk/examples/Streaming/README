@@ -1,0 +1,4 @@
+Install Catalyst 5.49_01 or higher.
+Run script/streaming_server.pl.
+Access http://localhost:3000/mp3 in your favorite mp3 player.
+

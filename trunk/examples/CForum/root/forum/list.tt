@@ -1,0 +1,7 @@
+[%PROCESS header.tt %]
+<h1> Forums for [%name%].</h1>
+<ul>
+[%FOREACH forum in forums %]
+<li><a href="[%base%]forum/view/[%forum.id%]">[%forum.name%]</a></li>
+[%END%]
+[%PROCESS footer.tt %]

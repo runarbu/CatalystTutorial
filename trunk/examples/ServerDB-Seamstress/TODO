@@ -1,0 +1,10 @@
+ServerDB TODO
+=============
+
+* There is some kind of tied hash bug with TT and/or Perl 5.8.4 causing the "keys" vmethod to not work on tied hashes.  I had to add some dirty hacks to work around this.
+
+* There is currently no way to add/remove servers via the web.  This wasn't a requirement for the original application so I never wrote it.
+
+chansen's ideas:
+* Use PROCESS instead of INCLUDE
+* Look into using WRAPPER

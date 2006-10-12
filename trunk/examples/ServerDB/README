@@ -1,0 +1,72 @@
+ServerDB
+
+Quick Start
+===========
+1. Check your prerequisites by running perl Build.PL
+2. script/serverdb_server.pl
+3. http://yourserver:3000
+4. Login as admin/12345 or user/12345.
+
+About
+=====
+This Catalyst application displays a list of servers and allows you to manage the list of 
+applications installed on each server.
+
+This is based off a real application prototype I've built which uses many different database fields.  That's why there is some apparently unused stuff in here like "support history".
+
+I've populated this sample with data from the list of public NTP time servers.
+
+Features:
+User authentication and roles
+Pagination
+Sorting
+Searching (with Plucene)
+
+Dependencies
+============
+Catalyst >= 5.23
+Catalyst::Plugin::FormValidator 
+Catalyst::Plugin::Session::FastMmap 
+Catalyst::Plugin::Static 
+Catalyst::Plugin::Authentication::CDBI >= 0.06
+DBD::SQLite2
+Class::DBI::Plugin::Pager
+Class::DBI::FromForm
+Plucene
+Plucene::Plugin::Analyzer::SnowballAnalyzer
+Text::CSV_XS
+Tie::IxHash
+Time::Piece::Range
+Digest::SHA
+YAML >= 0.39
+
+The database & index
+====================
+You can use the pre-existing SQLite database and Plucene index.  However, you may want to regenerate these or add additional servers to the database.  To do this, run the following commands:
+$ rm -f ServerDB.db
+$ sqlite ServerDB.db < ServerDB.sql
+$ sqlite ServerDB.db < ServerDB-data.sql
+
+To run the create scripts, you will need to edit the file lib/ServerDB/Script/CDBI.pm and change the $dsn variable to the path to your own database.
+
+Add a bunch of NTP server data by running:
+$ script/createServers.pl
+
+You should then rebuild the Plucene search index by running:
+$ script/createIndex.pl plucene
+
+Of course, replace the paths in those commands with your own.
+
+Known Issues
+============
+None at the moment.
+
+Copyright and License
+=====================
+Copyright 2005 by Andy Grundman.
+This is free software, you can redistribute it and/or modify it under the same terms as Perl itself.
+
+Author
+======
+Andy Grundman
+andy@hybridized.org

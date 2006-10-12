@@ -1,0 +1,7 @@
+Revision history for Perl extension Catalyst::Plugin::Compress::Bzip2
+
+0.02  Xxx Xxx 00 00:00:00 2005
+        - Compress Content-Type that matches /^text|xml$|javascript$/
+
+0.01  Wed Apr 27 01:00:00 2005
+        - original version.

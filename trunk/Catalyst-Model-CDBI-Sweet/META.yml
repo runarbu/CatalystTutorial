@@ -1,0 +1,16 @@
+---
+name: Catalyst-Model-CDBI-Sweet
+version: 0.04
+author:
+  - Christian Hansen <ch@ngmedia.com>
+abstract: ~
+license: perl
+requires:
+  Catalyst: 0
+  Class::DBI::Sweet: 0
+  Data::UUID: 0
+provides:
+  Catalyst::Model::CDBI::Sweet:
+    file: lib/Catalyst/Model/CDBI/Sweet.pm
+    version: 0.04
+generated_by: Module::Build version 0.2608
