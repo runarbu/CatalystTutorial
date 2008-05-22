@@ -31,7 +31,7 @@ INSERT INTO authors VALUES (3, 'Christian', 'Degu');
 INSERT INTO authors VALUES (4, 'Richard', 'Stevens');
 INSERT INTO authors VALUES (5, 'Douglas', 'Comer');
 INSERT INTO authors VALUES (6, 'Tom', 'Christiansen');
-INSERT INTO authors VALUES (7, ' Nathan', 'Torkington');
+INSERT INTO authors VALUES (7, 'Nathan', 'Torkington');
 INSERT INTO authors VALUES (8, 'Jeffrey', 'Zeldman');
 INSERT INTO book_authors VALUES (1, 1);
 INSERT INTO book_authors VALUES (1, 2);
@@ -41,3 +41,4 @@ INSERT INTO book_authors VALUES (3, 5);
 INSERT INTO book_authors VALUES (4, 6);
 INSERT INTO book_authors VALUES (4, 7);
 INSERT INTO book_authors VALUES (5, 8);
+

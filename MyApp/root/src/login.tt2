@@ -22,7 +22,7 @@
    # This code illustrates how certain parts of the TT 
    # template will only be shown to users who have logged in
 %]
-[% IF Catalyst.user %]
+[% IF Catalyst.user_exists %]
     Please Note: You are already logged in as '[% Catalyst.user.username %]'.
     You can <a href="[% Catalyst.uri_for('/logout') %]">logout</a> here.
 [% ELSE %]
@@ -35,3 +35,4 @@
    TT code, it's probably a little too subtle for use in "normal" 
    comments.
 %]
+</p>

@@ -5,16 +5,12 @@ use base 'Catalyst::Model::DBIC::Schema';
 
 my $dsn = $ENV{MYAPP_DSN} ||= 'dbi:SQLite:myapp.db';
 __PACKAGE__->config(
-    schema_class => 'MyAppDB',
+    schema_class => 'MyApp::Schema::MyAppDB',
     connect_info => [
         $dsn,
-        '',
-        '',
-        { AutoCommit => 1 },
-
+        
     ],
 );
-
 
 =head1 NAME
 
@@ -25,11 +21,11 @@ See L<MyApp>
 
 =head1 DESCRIPTION
 
-L<Catalyst::Model::DBIC::Schema> Model using schema L<MyAppDB>
+L<Catalyst::Model::DBIC::Schema> Model using schema L<MyApp::Schema::MyAppDB>
 
 =head1 AUTHOR
 
-root
+A clever guy
 
 =head1 LICENSE
 

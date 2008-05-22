@@ -17,8 +17,7 @@ Catalyst Controller.
 =cut
 
 
-
-=head2 index 
+=head2 index
 
 Login logic
 
@@ -34,7 +33,8 @@ sub index : Private {
     # If the username and password values were found in form
     if ($username && $password) {
         # Attempt to log the user in
-        if ($c->login($username, $password)) {
+        if ($c->authenticate({ username => $username, 
+                               password => $password} )) {
             # If successful, then let them use the application
             $c->response->redirect($c->uri_for('/books/list'));
             return;
@@ -49,10 +49,9 @@ sub index : Private {
 }
 
 
-
 =head1 AUTHOR
 
-root
+A clever guy
 
 =head1 LICENSE
 

@@ -17,7 +17,6 @@ Catalyst Controller.
 =cut
 
 
-
 =head2 index
 
 Logout logic
@@ -35,10 +34,9 @@ sub index : Private {
 }
 
 
-
 =head1 AUTHOR
 
-root
+A clever guy
 
 =head1 LICENSE
 

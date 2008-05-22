@@ -7,5 +7,3 @@
 </div>
 
 <div id="footer">[% PROCESS site/footer %]</div>
-
-
