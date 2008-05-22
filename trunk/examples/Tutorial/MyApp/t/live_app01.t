@@ -27,13 +27,19 @@ my $ua2 = Test::WWW::Mechanize::Catalyst->new;
 $_->get_ok("http://localhost/", "Check redirect of base URL") for $ua1, $ua2;
 # Use title_is() to check the contents of the <title>...</title> tags
 $_->title_is("Login", "Check for login title") for $ua1, $ua2;
-# Use content_contains() to match on test in the html body
+# Use content_contains() to match on text in the html body
 $_->content_contains("You need to log in to use this application",
     "Check we are NOT logged in") for $ua1, $ua2;
 
 # Log in as each user
+# Specify username and password on the URL
 $ua1->get_ok("http://localhost/login?username=test01&password=mypass", "Login 'test01'");
-$ua2->get_ok("http://localhost/login?username=test02&password=mypass", "Login 'test02'");
+# Use the form for user 'test02'; note there is no description here
+$ua2->submit_form(
+    fields => {
+        username => 'test02',
+        password => 'mypass',
+    });
 
 # Go back to the login page and it should show that we are already logged in
 $_->get_ok("http://localhost/login", "Return to '/login'") for $ua1, $ua2;
@@ -41,7 +47,7 @@ $_->title_is("Login", "Check for login page") for $ua1, $ua2;
 $_->content_contains("Please Note: You are already logged in as ",
     "Check we ARE logged in" ) for $ua1, $ua2;
 
-# 'Click' the 'Logout' link
+# 'Click' the 'Logout' link (see also 'text_regex' and 'url_regex' options)
 $_->follow_link_ok({n => 1}, "Logout via first link on page") for $ua1, $ua2;
 $_->title_is("Login", "Check for login title") for $ua1, $ua2;
 $_->content_contains("You need to log in to use this application",
@@ -89,10 +95,9 @@ my @delLinks = $ua1->find_all_links(text => 'Delete');
 $ua1->get_ok($delLinks[$#delLinks]->url, 'Delete last book');
 # Check that delete worked
 $ua1->content_contains("Book List", "Book List page test");
-$ua1->content_contains("Book deleted.", "Book was deleted");
+$ua1->content_contains("Book deleted", "Book was deleted");
 
 # User 'test02' should not be able to add a book
 $ua2->get_ok("http://localhost/books/url_create/TestTitle2/2/5", "'test02' add");
 $ua2->content_contains("Unauthorized!", "Check 'test02' cannot add");
-
 

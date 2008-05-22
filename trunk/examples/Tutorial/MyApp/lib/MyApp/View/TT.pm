@@ -12,7 +12,7 @@ __PACKAGE__->config({
     PRE_PROCESS  => 'config/main',
     WRAPPER      => 'site/wrapper',
     ERROR        => 'error.tt2',
-    TIMER        => 0
+    TIMER        => 0,
 });
 
 =head1 NAME
@@ -29,7 +29,7 @@ Catalyst TTSite View.
 
 =head1 AUTHOR
 
-root
+A clever guy
 
 =head1 LICENSE
 

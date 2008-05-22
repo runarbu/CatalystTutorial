@@ -42,7 +42,6 @@ Attempt to render a view, if needed.
 sub end : ActionClass('RenderView') {}
 
 
-
 =head2 auto
 
 Check if there is a user and, if not, forward to login page
@@ -51,11 +50,17 @@ Check if there is a user and, if not, forward to login page
 
 # Note that 'auto' runs after 'begin' but before your actions and that
 # 'auto' "chain" (all from application path to most specific class are run)
+# See the 'Actions' section of 'Catalyst::Manual::Intro' for more info.
 sub auto : Private {
     my ($self, $c) = @_;
 
-    # Allow unauthenticated users to reach the login page
-    if ($c->request->path =~ /login/) {
+    # Allow unauthenticated users to reach the login page.  This
+    # allows anauthenticated users to reach any action in the Login
+    # controller.  To lock it down to a single action, we could use:
+    #   if ($c->action eq $c->controller('Login')->action_for('index'))
+    # to only allow unauthenticated access to the C<index> action we
+    # added above.
+    if ($c->controller eq $c->controller('Login')) {
         return 1;
     }
 
@@ -77,7 +82,7 @@ sub auto : Private {
 
 =head1 AUTHOR
 
-root
+Catalyst developer
 
 =head1 LICENSE
 

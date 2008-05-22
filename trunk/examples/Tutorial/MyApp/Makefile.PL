@@ -3,7 +3,7 @@ use inc::Module::Install;
 name 'MyApp';
 all_from 'lib/MyApp.pm';
 
-requires 'Catalyst' => '5.7000';
+requires 'Catalyst::Runtime' => '5.7011';
 requires 'Catalyst::Plugin::ConfigLoader';
 requires 'Catalyst::Plugin::Static::Simple';
 requires 'Catalyst::Action::RenderView';

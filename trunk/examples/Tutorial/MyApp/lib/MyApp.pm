@@ -14,31 +14,26 @@ use Catalyst::Runtime '5.70';
 #                 directory
 
 use Catalyst qw/
-        -Debug
-        ConfigLoader
+        -Debug 
+        ConfigLoader 
         Static::Simple
-        
+
         StackTrace
 
         Authentication
-        Authentication::Store::DBIC
-        Authentication::Credential::Password
         Authorization::Roles
         Authorization::ACL
         
         Session
         Session::Store::FastMmap
         Session::State::Cookie
-    
-        HTML::Widget
         /;
 
-
-our $VERSION = '0.08';
+our $VERSION = '0.01';
 
 # Configure the application. 
 #
-# Note that settings in MyApp.yml (or other external
+# Note that settings in myapp.yml (or other external
 # configuration file that you set up manually) take precedence
 # over this when using ConfigLoader. Thus configuration
 # details given here can function as a default configuration,
@@ -66,8 +61,6 @@ __PACKAGE__->deny_access_unless(
     );
 
 
-
-
 =head1 NAME
 
 MyApp - Catalyst based application
@@ -86,7 +79,7 @@ L<MyApp::Controller::Root>, L<Catalyst>
 
 =head1 AUTHOR
 
-root
+Catalyst developer
 
 =head1 LICENSE
 
