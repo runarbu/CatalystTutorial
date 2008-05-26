@@ -22,10 +22,11 @@ Catalyst Controller.
 =cut
 
 sub index : Private {
-my ( $self, $c ) = @_;
+    my ( $self, $c ) = @_;
 
     $c->response->body('Matched MyApp::Controller::Books in Books.');
 }
+
 
 
 =head2 list
@@ -33,21 +34,19 @@ my ( $self, $c ) = @_;
 Fetch all book objects and pass to books/list.tt2 in stash to be displayed
 
 =cut
-
+ 
 sub list : Local {
-    # Retrieve the usual perl OO '$self' for this object. $c is the Catalyst
+    # Retrieve the usual Perl OO '$self' for this object. $c is the Catalyst
     # 'Context' that's used to 'glue together' the various components
     # that make up the application
     my ($self, $c) = @_;
 
-#$DB::single=1;
-
     # Retrieve all of the book records as book model objects and store in the
     # stash where they can be accessed by the TT template
-    $c->stash->{books} = [$c->model('MyAppDB::Books')->all];
-
+    $c->stash->{books} = [$c->model('DB::Books')->all];
+    
     # Set the TT template to use.  You will almost always want to do this
-    # in your action methods (actions methods respond to user input in
+    # in your action methods (action methods respond to user input in
     # your controllers).
     $c->stash->{template} = 'books/list.tt2';
 }
@@ -71,7 +70,7 @@ sub url_create : Local {
     if ($c->check_user_roles('admin')) {
         # Call create() on the book model object. Pass the table 
         # columns/field values we want to set as hash values
-        my $book = $c->model('MyAppDB::Books')->create({
+        my $book = $c->model('DB::Books')->create({
                 title   => $title,
                 rating  => $rating
             });
@@ -103,7 +102,6 @@ sub url_create : Local {
 
 
 
-
 =head2 form_create
 
 Display form to collect information for book to create
@@ -116,6 +114,7 @@ sub form_create : Local {
     # Set the TT template to use
     $c->stash->{template} = 'books/form_create.tt2';
 }
+
 
 
 =head2 form_create_do
@@ -133,7 +132,7 @@ sub form_create_do : Local {
     my $author_id = $c->request->params->{author_id} || '1';
 
     # Create the book
-    my $book = $c->model('MyAppDB::Books')->create({
+    my $book = $c->model('DB::Books')->create({
             title   => $title,
             rating  => $rating,
         });
@@ -152,6 +151,7 @@ sub form_create_do : Local {
 }
 
 
+
 =head2 delete 
 
 Delete a book
@@ -163,7 +163,7 @@ sub delete : Local {
     my ($self, $c, $id) = @_;
 
     # Search for the book and then delete it
-    $c->model('MyAppDB::Books')->search({id => $id})->delete_all;
+    $c->model('DB::Books')->search({id => $id})->delete_all;
 
     # Use 'flash' to save information across requests until it's read
     $c->flash->{status_msg} = "Book deleted";
@@ -171,6 +171,7 @@ sub delete : Local {
     # Redirect the user back to the list page
     $c->response->redirect($c->uri_for('/books/list'));
 }
+
 
 
 =head2 access_denied

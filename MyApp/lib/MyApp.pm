@@ -14,20 +14,20 @@ use Catalyst::Runtime '5.70';
 #                 directory
 
 use Catalyst qw/
-        -Debug 
-        ConfigLoader 
-        Static::Simple
+    -Debug 
+    ConfigLoader 
+    Static::Simple
+    
+    StackTrace
 
-        StackTrace
-
-        Authentication
-        Authorization::Roles
-        Authorization::ACL
-        
-        Session
-        Session::Store::FastMmap
-        Session::State::Cookie
-        /;
+    Authentication
+    Authorization::Roles
+    Authorization::ACL
+            
+    Session
+    Session::Store::FastMmap
+    Session::State::Cookie
+    /;
 
 our $VERSION = '0.01';
 

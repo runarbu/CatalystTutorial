@@ -100,4 +100,3 @@ $ua1->content_contains("Book deleted", "Book was deleted");
 # User 'test02' should not be able to add a book
 $ua2->get_ok("http://localhost/books/url_create/TestTitle2/2/5", "'test02' add");
 $ua2->content_contains("Unauthorized!", "Check 'test02' cannot add");
-

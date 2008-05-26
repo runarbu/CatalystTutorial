@@ -42,6 +42,7 @@ Attempt to render a view, if needed.
 sub end : ActionClass('RenderView') {}
 
 
+
 =head2 auto
 
 Check if there is a user and, if not, forward to login page
@@ -77,7 +78,6 @@ sub auto : Private {
     # User found, so return 1 to continue with processing after this 'auto'
     return 1;
 }
-
 
 
 =head1 AUTHOR
