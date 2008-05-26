@@ -17,6 +17,7 @@ Catalyst Controller.
 =cut
 
 
+
 =head2 index
 
 Login logic
@@ -25,6 +26,8 @@ Login logic
 
 sub index : Private {
     my ($self, $c) = @_;
+
+$DB::single=1;
 
     # Get the username and password from form
     my $username = $c->request->params->{username} || "";

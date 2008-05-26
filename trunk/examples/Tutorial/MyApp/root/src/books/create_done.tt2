@@ -32,4 +32,4 @@ with a rating of [% book.rating %].</p>
 <pre>
 Dump of the 'book' variable:
 [% Dumper.dump(book) %]
-
+</pre>
