@@ -24,10 +24,8 @@ Login logic
 
 =cut
 
-sub index : Private {
+sub index :Path :Args(0) {
     my ($self, $c) = @_;
-
-$DB::single=1;
 
     # Get the username and password from form
     my $username = $c->request->params->{username} || "";
