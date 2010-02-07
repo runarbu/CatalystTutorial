@@ -1,8 +1,8 @@
 package MyApp::Controller::Login;
+use Moose;
+use namespace::autoclean;
 
-use strict;
-use warnings;
-use parent 'Catalyst::Controller';
+BEGIN {extends 'Catalyst::Controller'; }
 
 =head1 NAME
 
@@ -16,7 +16,6 @@ Catalyst Controller.
 
 =cut
 
-
 =head2 index
 
 Login logic
@@ -27,11 +26,11 @@ sub index :Path :Args(0) {
     my ($self, $c) = @_;
 
     # Get the username and password from form
-    my $username = $c->request->params->{username} || "";
-    my $password = $c->request->params->{password} || "";
+    my $username = $c->request->params->{username};
+    my $password = $c->request->params->{password};
 
     # If the username and password values were found in form
-    if (defined($username) && defined($password)) {
+    if ($username && $password) {
         # Attempt to log the user in
         if ($c->authenticate({ username => $username,
                                password => $password  } )) {
@@ -43,16 +42,14 @@ sub index :Path :Args(0) {
             # Set an error message
             $c->stash->{error_msg} = "Bad username or password.";
         }
+    } else {
+        # Set an error message
+        $c->stash->{error_msg} = "Empty username or password.";
     }
 
     # If either of above don't work out, send to the login page
     $c->stash->{template} = 'login.tt2';
 }
-
-
-=head1 AUTHOR
-
-root
 
 =head1 LICENSE
 
@@ -61,4 +58,5 @@ it under the same terms as Perl itself.
 
 =cut
 
-1;
+__PACKAGE__->meta->make_immutable;
+
