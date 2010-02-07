@@ -19,10 +19,6 @@ TT View for Hello.
 
 L<Hello>
 
-=head1 AUTHOR
-
-root
-
 =head1 LICENSE
 
 This library is free software. You can redistribute it and/or modify
