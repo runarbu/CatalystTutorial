@@ -1,8 +1,8 @@
 package MyApp::Controller::Books;
+use Moose;
+use namespace::autoclean;
 
-use strict;
-use warnings;
-use parent 'Catalyst::Controller';
+BEGIN {extends 'Catalyst::Controller'; }
 
 =head1 NAME
 
@@ -16,7 +16,6 @@ Catalyst Controller.
 
 =cut
 
-
 =head2 index
 
 =cut
@@ -26,13 +25,6 @@ sub index :Path :Args(0) {
 
     $c->response->body('Matched MyApp::Controller::Books in Books.');
 }
-
-
-=head2 list
-
-Fetch all book objects and pass to books/list.tt2 in stash to be displayed
-
-=cut
 
 =head2 list
 
@@ -53,9 +45,8 @@ sub list : Local {
     # Set the TT template to use.  You will almost always want to do this
     # in your action methods (action methods respond to user input in
     # your controllers).
-    $c->stash->{template} = 'books/list.tt2';
+    $c->stash(template => 'books/list.tt2');
 }
-
 
 =head2 base
 
@@ -183,6 +174,27 @@ sub object :Chained('base') :PathPart('id') :CaptureArgs(1) {
 }
 
 
+=head2 delete
+
+Delete a book
+
+=cut
+
+sub delete :Chained('object') :PathPart('delete') :Args(0) {
+    my ($self, $c) = @_;
+
+    # Use the book object saved by 'object' and delete it along
+    # with related 'book_author' entries
+    $c->stash->{object}->delete;
+
+    # Use 'flash' to save information across requests until it's read
+    $c->flash->{status_msg} = "Book deleted";
+
+    # Redirect the user back to the list page
+    $c->response->redirect($c->uri_for($self->action_for('list')));
+}
+
+
 =head2 list_recent
 
 List recently created books
@@ -229,37 +241,13 @@ sub list_recent_tcp :Chained('base') :PathPart('list_recent_tcp') :Args(1) {
     $c->stash->{template} = 'books/list.tt2';
 }
 
-
-=head2 delete
-
-Delete a book
-
-=cut
-
-sub delete :Chained('object') :PathPart('delete') :Args(0) {
-    my ($self, $c) = @_;
-
-    # Use the book object saved by 'object' and delete it along
-    # with related 'book_authors' entries
-    $c->stash->{object}->delete;
-
-    # Use 'flash' to save information across requests until it's read
-    $c->flash->{status_msg} = "Book deleted";
-
-    # Redirect the user back to the list page
-    $c->response->redirect($c->uri_for($self->action_for('list')));
-}
-
-
-=head1 AUTHOR
-
-root
-
 =head1 LICENSE
 
 This library is free software. You can redistribute it and/or modify
 it under the same terms as Perl itself.
 
 =cut
+
+__PACKAGE__->meta->make_immutable;
 
 1;
