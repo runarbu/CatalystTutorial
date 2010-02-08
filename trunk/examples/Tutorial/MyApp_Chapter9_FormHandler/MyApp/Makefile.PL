@@ -7,6 +7,7 @@ name 'MyApp';
 all_from 'lib/MyApp.pm';
 
 requires 'Catalyst::Runtime' => '5.80018';
+requires 'Catalyst::Authentication::Realm::SimpleDB';
 requires 'Catalyst::Plugin::ConfigLoader';
 requires 'Catalyst::Plugin::Static::Simple';
 requires 'Catalyst::Plugin::StackTrace';
