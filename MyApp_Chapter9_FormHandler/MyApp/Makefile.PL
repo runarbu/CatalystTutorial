@@ -17,6 +17,7 @@ requires 'Catalyst::Plugin::Session';
 requires 'Catalyst::Plugin::Session::Store::FastMmap';
 requires 'Catalyst::Plugin::Session::State::Cookie';
 requires 'Catalyst::Action::RenderView';
+requires 'Catalyst::View::TT';
 requires 'HTML::FormHandler::Model::DBIC';
 requires 'Moose';
 requires 'namespace::autoclean';
