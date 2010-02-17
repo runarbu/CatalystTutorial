@@ -165,7 +165,7 @@ __PACKAGE__->add_columns(
     },
 );
 
-=head 2 has_role
+=head2 has_role
 
 Check if a user has the specified role
 
