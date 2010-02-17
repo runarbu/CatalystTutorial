@@ -12,6 +12,7 @@ use Catalyst::Runtime 5.80;
 # Static::Simple: will serve static files from the application's root
 #                 directory
 
+# Load plugins
 use Catalyst qw/
     -Debug
     ConfigLoader
@@ -41,11 +42,11 @@ $VERSION = eval $VERSION;
 # local deployment.
 
 __PACKAGE__->config(
-    name => 'MyApp',
-    # Disable deprecated behavior needed by old applications
-    disable_component_resolution_regex_fallback => 1,
-    session => { flash_to_stash => 1 },
-);
+        name    => 'MyApp',
+        # Disable deprecated behavior needed by old applications
+        disable_component_resolution_regex_fallback => 1,
+        session => { flash_to_stash => 1 },
+    );
 
 # Configure SimpleDB Authentication
 __PACKAGE__->config->{'Plugin::Authentication'} = {
@@ -55,6 +56,7 @@ __PACKAGE__->config->{'Plugin::Authentication'} = {
             password_type   => 'self_check',
         },
     };
+
 
 # Start the application
 __PACKAGE__->setup();
@@ -75,6 +77,10 @@ MyApp - Catalyst based application
 =head1 SEE ALSO
 
 L<MyApp::Controller::Root>, L<Catalyst>
+
+=head1 AUTHOR
+
+root
 
 =head1 LICENSE
 

@@ -85,8 +85,11 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.05000 @ 2010-02-07 02:51:06
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:IELkSZRwIMnh5CfAPiCz6g
+# Created by DBIx::Class::Schema::Loader v0.05002 @ 2010-02-17 15:29:27
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:sKB+LZSGQzhTqj1zzO8q/w
+
+
+# You can replace this text with custom content, and it will be preserved on regeneration
 
 # many_to_many():
 #   args:
@@ -96,5 +99,4 @@ __PACKAGE__->has_many(
 #   You must already have the has_many() defined to use a many_to_many().
 __PACKAGE__->many_to_many(authors => 'book_authors', 'author');
 
-# You can replace this text with custom content, and it will be preserved on regeneration
 1;

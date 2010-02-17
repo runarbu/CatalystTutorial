@@ -85,8 +85,11 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.05001 @ 2010-02-07 04:49:36
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:oAaQWLwMfVf6x2RUSDDy3w
+# Created by DBIx::Class::Schema::Loader v0.05002 @ 2010-02-17 16:27:48
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:zW5eyFeMspfXIYEwR03fmA
+
+
+# You can replace this text with custom content, and it will be preserved on regeneration
 
 # many_to_many():
 #   args:
@@ -96,8 +99,9 @@ __PACKAGE__->has_many(
 #   You must already have the has_many() defined to use a many_to_many().
 __PACKAGE__->many_to_many(books => 'book_authors', 'book');
 
+
 #
-# Helper methods
+# Row-level helper methods
 #
 sub full_name {
     my ($self) = @_;
@@ -105,5 +109,5 @@ sub full_name {
     return $self->first_name . ' ' . $self->last_name;
 }
 
-# You can replace this text with custom content, and it will be preserved on regeneration
+
 1;

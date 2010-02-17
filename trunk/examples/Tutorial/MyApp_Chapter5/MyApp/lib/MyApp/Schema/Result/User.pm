@@ -141,8 +141,11 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.05001 @ 2010-02-07 04:49:36
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:xfjg2vo+tmdbYqJjWt93aw
+# Created by DBIx::Class::Schema::Loader v0.05002 @ 2010-02-17 16:27:48
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:174DVpqYH1U4h9EGCBq87Q
+
+
+# You can replace this text with custom content, and it will be preserved on regeneration
 
 # many_to_many():
 #   args:
@@ -151,6 +154,7 @@ __PACKAGE__->has_many(
 #     3) Name of belongs_to() relationship in model class of has_many() above
 #   You must already have the has_many() defined to use a many_to_many().
 __PACKAGE__->many_to_many(roles => 'user_roles', 'role');
+
 
 # Have the 'password' column use a SHA-1 hash and 10-character salt
 # with hex encoding; Generate the 'check_password" method
@@ -165,5 +169,5 @@ __PACKAGE__->add_columns(
     },
 );
 
-# You can replace this text with custom content, and it will be preserved on regeneration
+
 1;

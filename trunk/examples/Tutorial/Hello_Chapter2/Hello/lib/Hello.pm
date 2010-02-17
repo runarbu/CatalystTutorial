@@ -58,6 +58,10 @@ Hello - Catalyst based application
 
 L<Hello::Controller::Root>, L<Catalyst>
 
+=head1 AUTHOR
+
+root
+
 =head1 LICENSE
 
 This library is free software. You can redistribute it and/or modify

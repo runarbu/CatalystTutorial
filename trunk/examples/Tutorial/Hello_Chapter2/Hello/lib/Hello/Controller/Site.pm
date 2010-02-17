@@ -16,6 +16,7 @@ Catalyst Controller.
 
 =cut
 
+
 =head2 index
 
 =cut
@@ -26,12 +27,18 @@ sub index :Path :Args(0) {
     $c->response->body('Matched Hello::Controller::Site in Site.');
 }
 
+
 sub test :Local {
     my ( $self, $c ) = @_;
 
-    $c->stash->{username} = "John";
-    $c->stash->{template} = 'site/test.tt';
+    $c->stash(username => 'John',
+              template => 'site/test.tt');
 }
+
+
+=head1 AUTHOR
+
+root
 
 =head1 LICENSE
 
@@ -42,4 +49,3 @@ it under the same terms as Perl itself.
 
 __PACKAGE__->meta->make_immutable;
 
-1;

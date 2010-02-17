@@ -12,6 +12,7 @@ use Catalyst::Runtime 5.80;
 # Static::Simple: will serve static files from the application's root
 #                 directory
 
+# Load plugins
 use Catalyst qw/
     -Debug
     ConfigLoader
@@ -59,6 +60,10 @@ MyApp - Catalyst based application
 =head1 SEE ALSO
 
 L<MyApp::Controller::Root>, L<Catalyst>
+
+=head1 AUTHOR
+
+root
 
 =head1 LICENSE
 

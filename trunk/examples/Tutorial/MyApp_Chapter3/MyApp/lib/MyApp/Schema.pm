@@ -8,13 +8,11 @@ use warnings;
 
 use base 'DBIx::Class::Schema';
 
-__PACKAGE__->load_namespaces(
-    result_namespace => 'Result',
-);
+__PACKAGE__->load_namespaces;
 
 
-# Created by DBIx::Class::Schema::Loader v0.05001 @ 2010-02-07 03:08:05
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:8RFCrYpX8XplI+2rG0nYXg
+# Created by DBIx::Class::Schema::Loader v0.05002 @ 2010-02-17 15:29:27
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:1k0GfzGX/McG/tJ0TnITjw
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
