@@ -14,6 +14,10 @@ __PACKAGE__->config(namespace => '');
 
 Hello::Controller::Root - Root Controller for Hello
 
+=head1 DESCRIPTION
+
+[enter your description here]
+
 =head1 METHODS
 
 =head2 index
@@ -27,12 +31,6 @@ sub index :Path :Args(0) {
 
     # Hello World
     $c->response->body( $c->welcome_message );
-}
-
-sub hello :Global {
-    my ( $self, $c ) = @_;
-    
-    $c->stash(template => 'hello.tt');
 }
 
 =head2 default
@@ -54,6 +52,18 @@ Attempt to render a view, if needed.
 =cut
 
 sub end : ActionClass('RenderView') {}
+
+
+sub hello :Global {
+    my ( $self, $c ) = @_;
+    
+    $c->stash(template => 'hello.tt');
+}
+
+
+=head1 AUTHOR
+
+root
 
 =head1 LICENSE
 

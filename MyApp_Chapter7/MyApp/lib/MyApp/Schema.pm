@@ -13,8 +13,8 @@ __PACKAGE__->load_namespaces(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.05001 @ 2010-02-07 03:38:55
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:+asok1riE0WTYfuUVE6bWg
+# Created by DBIx::Class::Schema::Loader v0.05002 @ 2010-02-17 16:11:03
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:j5kySHBu9x4UICiATq/+Uw
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

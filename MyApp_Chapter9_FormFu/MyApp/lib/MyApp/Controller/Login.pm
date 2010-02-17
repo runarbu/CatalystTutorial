@@ -16,6 +16,7 @@ Catalyst Controller.
 
 =cut
 
+
 =head2 index
 
 Login logic
@@ -40,16 +41,21 @@ sub index :Path :Args(0) {
             return;
         } else {
             # Set an error message
-            $c->stash->{error_msg} = "Bad username or password.";
+            $c->stash(error_msg => "Bad username or password.");
         }
     } else {
         # Set an error message
-        $c->stash->{error_msg} = "Empty username or password.";
+        $c->stash(error_msg => "Empty username or password.");
     }
 
     # If either of above don't work out, send to the login page
-    $c->stash->{template} = 'login.tt2';
+    $c->stash(template => 'login.tt2');
 }
+
+
+=head1 AUTHOR
+
+root
 
 =head1 LICENSE
 

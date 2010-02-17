@@ -30,6 +30,10 @@ L<Catalyst::Model::DBIC::Schema> Model using schema L<MyApp::Schema>
 
 Catalyst::Helper::Model::DBIC::Schema - 0.4
 
+=head1 AUTHOR
+
+root
+
 =head1 LICENSE
 
 This library is free software, you can redistribute it and/or modify

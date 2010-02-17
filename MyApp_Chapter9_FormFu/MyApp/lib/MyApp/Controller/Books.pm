@@ -4,6 +4,7 @@ use namespace::autoclean;
 
 BEGIN {extends 'Catalyst::Controller::HTML::FormFu'; }
 
+
 =head1 NAME
 
 MyApp::Controller::Books - Catalyst Controller
@@ -16,6 +17,7 @@ Catalyst Controller.
 
 =cut
 
+
 =head2 index
 
 =cut
@@ -26,27 +28,29 @@ sub index :Path :Args(0) {
     $c->response->body('Matched MyApp::Controller::Books in Books.');
 }
 
+
 =head2 list
 
 Fetch all book objects and pass to books/list.tt2 in stash to be displayed
 
 =cut
 
-sub list : Local {
+sub list :Local {
     # Retrieve the usual Perl OO '$self' for this object. $c is the Catalyst
     # 'Context' that's used to 'glue together' the various components
     # that make up the application
     my ($self, $c) = @_;
 
-    # Retrieve all of the book records as book model objects and store in the
-    # stash where they can be accessed by the TT template
-    $c->stash->{books} = [$c->model('DB::Book')->all];
+    # Retrieve all of the book records as book model objects and store
+    # in the stash where they can be accessed by the TT template
+    $c->stash(books => [$c->model('DB::Book')->all]);
 
     # Set the TT template to use.  You will almost always want to do this
     # in your action methods (action methods respond to user input in
     # your controllers).
     $c->stash(template => 'books/list.tt2');
 }
+
 
 =head2 base
 
@@ -58,7 +62,7 @@ sub base :Chained('/') :PathPart('books') :CaptureArgs(0) {
     my ($self, $c) = @_;
 
     # Store the ResultSet in stash so it's available for other methods
-    $c->stash->{resultset} = $c->model('DB::Book');
+    $c->stash(resultset => $c->model('DB::Book'));
 
     # Print a message to the debug log
     $c->log->debug('*** INSIDE BASE METHOD ***');
@@ -93,11 +97,9 @@ sub url_create :Chained('base') :PathPart('url_create') :Args(3) {
         # Note: Above is a shortcut for this:
         # $book->create_related('book_authors', {author_id => $author_id});
 
-        # Assign the Book object to the stash for display in the view
-        $c->stash->{book} = $book;
-
-        # Set the TT template to use
-        $c->stash->{template} = 'books/create_done.tt2';
+        # Assign the Book object to the stash and set template
+        $c->stash(book     => $book,
+                  template => 'books/create_done.tt2');
     } else {
         # Provide very simple feedback to the user.
         $c->response->body('Unauthorized!');
@@ -115,16 +117,16 @@ sub form_create :Chained('base') :PathPart('form_create') :Args(0) {
     my ($self, $c) = @_;
 
     # Set the TT template to use
-    $c->stash->{template} = 'books/form_create.tt2';
+    $c->stash(template => 'books/form_create.tt2');
 }
 
 
 =head2 form_create_do
-
+    
 Take information from form and add to database
-
+    
 =cut
-
+    
 sub form_create_do :Chained('base') :PathPart('form_create_do') :Args(0) {
     my ($self, $c) = @_;
 
@@ -143,17 +145,14 @@ sub form_create_do :Chained('base') :PathPart('form_create_do') :Args(0) {
     # Note: Above is a shortcut for this:
     # $book->create_related('book_authors', {author_id => $author_id});
 
-    # Store new model object in stash
-    $c->stash->{book} = $book;
-
     # Avoid Data::Dumper issue mentioned earlier
     # You can probably omit this
     $Data::Dumper::Useperl = 1;
 
-    # Set the TT template to use
-    $c->stash->{template} = 'books/create_done.tt2';
+    # Store new model object in stash and set template
+    $c->stash(book     => $book,
+              template => 'books/create_done.tt2');
 }
-
 
 =head2 object
 
@@ -193,7 +192,7 @@ sub delete :Chained('object') :PathPart('delete') :Args(0) {
         unless $c->stash->{object}->delete_allowed_by($c->user->get_object);
 
     # Use the book object saved by 'object' and delete it along
-    # with related 'book_author' entries
+    # with related 'book_authors' entries
     $c->stash->{object}->delete;
 
     # Use 'flash' to save information across requests until it's read
@@ -216,13 +215,13 @@ sub list_recent :Chained('base') :PathPart('list_recent') :Args(1) {
     # Retrieve all of the book records as book model objects and store in the
     # stash where they can be accessed by the TT template, but only
     # retrieve books created within the last $min number of minutes
-    $c->stash->{books} = [$c->model('DB::Book')
-                            ->created_after(DateTime->now->subtract(minutes => $mins))];
+    $c->stash(books => [$c->model('DB::Book')
+                            ->created_after(DateTime->now->subtract(minutes => $mins))]);
 
     # Set the TT template to use.  You will almost always want to do this
     # in your action methods (action methods respond to user input in
     # your controllers).
-    $c->stash->{template} = 'books/list.tt2';
+    $c->stash(template => 'books/list.tt2');
 }
 
 
@@ -239,16 +238,17 @@ sub list_recent_tcp :Chained('base') :PathPart('list_recent_tcp') :Args(1) {
     # stash where they can be accessed by the TT template, but only
     # retrieve books created within the last $min number of minutes
     # AND that have 'TCP' in the title
-    $c->stash->{books} = [$c->model('DB::Book')
+    $c->stash(books => [$c->model('DB::Book')
                             ->created_after(DateTime->now->subtract(minutes => $mins))
                             ->title_like('TCP')
-                         ];
+                        ]);
 
     # Set the TT template to use.  You will almost always want to do this
     # in your action methods (action methods respond to user input in
     # your controllers).
-    $c->stash->{template} = 'books/list.tt2';
+    $c->stash(template => 'books/list.tt2');
 }
+
 
 =head2 formfu_create
 
@@ -292,6 +292,7 @@ sub formfu_create :Chained('base') :PathPart('formfu_create') :Args(0) :FormConf
     # Set the template
     $c->stash->{template} = 'books/formfu_create.tt2';
 }
+
 
 =head2 formfu_edit
 
@@ -347,6 +348,11 @@ sub formfu_edit :Chained('object') :PathPart('formfu_edit') :Args(0)
     $c->stash->{template} = 'books/formfu_create.tt2';
 }
 
+
+=head1 AUTHOR
+
+root
+
 =head1 LICENSE
 
 This library is free software. You can redistribute it and/or modify
@@ -356,4 +362,3 @@ it under the same terms as Perl itself.
 
 __PACKAGE__->meta->make_immutable;
 
-1;

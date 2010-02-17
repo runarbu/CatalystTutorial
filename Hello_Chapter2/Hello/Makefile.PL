@@ -6,7 +6,7 @@ use inc::Module::Install;
 name 'Hello';
 all_from 'lib/Hello.pm';
 
-requires 'Catalyst::Runtime' => '5.80018';
+requires 'Catalyst::Runtime' => '5.8002';
 requires 'Catalyst::Plugin::ConfigLoader';
 requires 'Catalyst::Plugin::Static::Simple';
 requires 'Catalyst::Action::RenderView';

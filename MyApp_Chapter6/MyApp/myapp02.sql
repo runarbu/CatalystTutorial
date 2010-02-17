@@ -1,7 +1,7 @@
-PRAGMA foreign_keys = ON;
 --
 -- Add user and role tables, along with a many-to-many join table
 --
+PRAGMA foreign_keys = ON;
 CREATE TABLE user (
         id            INTEGER PRIMARY KEY,
         username      TEXT,
@@ -32,3 +32,4 @@ INSERT INTO user_role VALUES (1, 1);
 INSERT INTO user_role VALUES (1, 2);
 INSERT INTO user_role VALUES (2, 1);
 INSERT INTO user_role VALUES (3, 1);
+

@@ -1,7 +1,7 @@
-PRAGMA foreign_keys = ON;
 --
 -- Create a very simple database to hold book and author information
 --
+PRAGMA foreign_keys = ON;
 CREATE TABLE book (
         id          INTEGER PRIMARY KEY,
         title       TEXT ,
@@ -42,3 +42,4 @@ INSERT INTO book_author VALUES (3, 5);
 INSERT INTO book_author VALUES (4, 6);
 INSERT INTO book_author VALUES (4, 7);
 INSERT INTO book_author VALUES (5, 8);
+

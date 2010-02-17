@@ -53,6 +53,10 @@ Attempt to render a view, if needed.
 
 sub end : ActionClass('RenderView') {}
 
+=head1 AUTHOR
+
+root
+
 =head1 LICENSE
 
 This library is free software. You can redistribute it and/or modify
