@@ -1,4 +1,4 @@
-package MyApp::View::TT;
+package MyApp::View::HTML;
 
 use strict;
 use warnings;
@@ -7,7 +7,7 @@ use base 'Catalyst::View::TT';
 
 __PACKAGE__->config(
     # Change default TT extension
-    #TEMPLATE_EXTENSION => '.tt2',
+    TEMPLATE_EXTENSION => '.tt2',
     # Set the location for TT files
     INCLUDE_PATH => [
             MyApp->path_to( 'root', 'src' ),
@@ -20,7 +20,7 @@ __PACKAGE__->config(
 
 =head1 NAME
 
-MyApp::View::TT - TT View for MyApp
+MyApp::View::HTML - TT View for MyApp
 
 =head1 DESCRIPTION
 
@@ -29,6 +29,10 @@ TT View for MyApp.
 =head1 SEE ALSO
 
 L<MyApp>
+
+=head1 AUTHOR
+
+root
 
 =head1 LICENSE
 
