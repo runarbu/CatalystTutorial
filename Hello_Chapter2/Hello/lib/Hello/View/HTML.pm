@@ -1,4 +1,4 @@
-package Hello::View::TT;
+package Hello::View::HTML;
 
 use strict;
 use warnings;
@@ -9,7 +9,7 @@ __PACKAGE__->config(TEMPLATE_EXTENSION => '.tt');
 
 =head1 NAME
 
-Hello::View::TT - TT View for Hello
+Hello::View::HTML - TT View for Hello
 
 =head1 DESCRIPTION
 

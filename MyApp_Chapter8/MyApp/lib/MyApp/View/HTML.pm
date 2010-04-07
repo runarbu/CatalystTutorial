@@ -1,4 +1,4 @@
-package MyApp::View::TT;
+package MyApp::View::HTML;
 
 use strict;
 use warnings;
@@ -20,7 +20,7 @@ __PACKAGE__->config(
 
 =head1 NAME
 
-MyApp::View::TT - TT View for MyApp
+MyApp::View::HTML - TT View for MyApp
 
 =head1 DESCRIPTION
 
