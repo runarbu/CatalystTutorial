@@ -19,7 +19,9 @@ requires 'Catalyst::Plugin::Authorization::Roles';
 requires 'Catalyst::Plugin::Session';
 requires 'Catalyst::Plugin::Session::Store::FastMmap';
 requires 'Catalyst::Plugin::Session::State::Cookie';
+requires 'Perl6::Junction';
 test_requires 'Test::More' => '0.88';
+
 catalyst;
 
 install_script glob('script/*.pl');
