@@ -20,6 +20,7 @@ requires 'Catalyst::Plugin::Session';
 requires 'Catalyst::Plugin::Session::Store::FastMmap';
 requires 'Catalyst::Plugin::Session::State::Cookie';
 requires 'Catalyst::Controller::HTML::FormFu';
+requires 'Perl6::Junction';
 test_requires 'Test::More' => '0.88';
 catalyst;
 
