@@ -133,9 +133,9 @@ __PACKAGE__->many_to_many(authors => 'book_authors', 'author');
 #
 __PACKAGE__->add_columns(
     "created",
-    { data_type => 'datetime', set_on_create => 1 },
+    { data_type => 'timestamp', set_on_create => 1 },
     "updated",
-    { data_type => 'datetime', set_on_create => 1, set_on_update => 1 },
+    { data_type => 'timestamp', set_on_create => 1, set_on_update => 1 },
 );
 
 
