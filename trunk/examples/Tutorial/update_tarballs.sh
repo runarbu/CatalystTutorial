@@ -1,6 +1,6 @@
 #!/bin/sh
 
 for x in */ ; do
-  tar cf - "$x" | gzip > "${x%/}.tar.gz"
+  tar cf - --exclude .svn "$x" | gzip > "${x%/}.tar.gz"
 done
 
