@@ -14,6 +14,8 @@ requires 'Moose';
 requires 'namespace::autoclean';
 requires 'Config::General'; # This should reflect the config file format you've chosen
                  # See Catalyst::Plugin::ConfigLoader for supported formats
+requires 'Catalyst::Plugin::StackTrace';
+requires 'Catalyst::Model::DBIC::Schema' => "1.27";
 requires 'Catalyst::Plugin::Authentication';
 requires 'Catalyst::Plugin::Session';
 requires 'Catalyst::Plugin::Session::Store::FastMmap';
@@ -21,6 +23,7 @@ requires 'Catalyst::Plugin::Session::State::Cookie';
 requires 'DBIx::Class';
 requires 'DBIx::Class::EncodedColumn';
 requires 'DBIx::Class::TimeStamp';
+requires 'Catalyst::Authentication::Realm::SimpleDB';
 test_requires 'Test::More' => '0.88';
 catalyst;
 
